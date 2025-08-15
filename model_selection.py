@@ -43,16 +43,24 @@ def build_model(name: str, params: dict | None):
 def tune_param_grid(model_name: str, param_grid: dict | None) -> list[dict]:
     if not param_grid:
         return [None]
-    # expand grid
+    # Expand grid. Accept scalars or iterables for each param.
     keys = list(param_grid.keys())
-    values = [param_grid[k] for k in keys]
-    # Allow nulls
-    def normalize(v):
-        return [None if x is None else x for x in v]
-    values = [normalize(v) for v in values]
+    raw_values = [param_grid[k] for k in keys]
+
+    def to_list(value):
+        if isinstance(value, (list, tuple, set)):
+            return list(value)
+        # wrap scalars
+        return [value]
+
+    def normalize(seq):
+        return [None if x is None else x for x in seq]
+
+    values = [normalize(to_list(v)) for v in raw_values]
+
     grids = [{}]
-    for k, vs in zip(keys, values):
-        grids = [dict(g, **{k: v}) for g in grids for v in vs]
+    for key, candidates in zip(keys, values):
+        grids = [dict(g, **{key: cand}) for g in grids for cand in candidates]
     return grids
 
 
