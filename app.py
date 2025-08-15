@@ -1,6 +1,7 @@
 import json
 from flask import Flask, Response
 from model import download_data, format_data, train_model, get_inference
+from optimizer import evaluate_and_maybe_optimize
 from config import model_file_path, TOKEN, TIMEFRAME, TRAINING_DAYS, REGION, DATA_PROVIDER
 
 
@@ -12,6 +13,11 @@ def update_data():
     files = download_data(TOKEN, TRAINING_DAYS, REGION, DATA_PROVIDER)
     format_data(files, DATA_PROVIDER)
     train_model(TIMEFRAME)
+    # Evaluate and possibly optimize; also commits changes if improved
+    try:
+        evaluate_and_maybe_optimize()
+    except Exception as e:
+        print(f"Optimizer warning: {e}")
 
 
 @app.route("/inference/<string:token>")
@@ -36,6 +42,17 @@ def update():
         return "0"
     except Exception:
         return "1"
+
+
+@app.route("/metrics")
+def metrics():
+    """Expose last evaluation metrics if available."""
+    import json, os
+    metrics_path = os.path.join(os.path.dirname(model_file_path), "metrics.json")
+    if os.path.exists(metrics_path):
+        with open(metrics_path, "r") as f:
+            return Response(f.read(), status=200, mimetype="application/json")
+    return Response(json.dumps({"status": "no-metrics"}), status=200, mimetype="application/json")
 
 
 if __name__ == "__main__":

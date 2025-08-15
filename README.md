@@ -1,10 +1,11 @@
 # Basic Price Prediction Node
 
-This repository provides an example [Allora network](https://docs.allora.network/) worker node, designed to offer price predictions. The primary objective is to demonstrate the use of a basic inference model running within a dedicated container, showcasing its integration with the Allora network infrastructure to contribute valuable inferences.
+This repository provides an example [Allora network](https://docs.allora.network/) worker node, designed to offer log-return predictions for SOL over a 24h horizon to align with Competition 16. It includes an automatic evaluation and optimization loop with zero manual code edits required.
 
 ## Components
 
 - **Worker**: The node that publishes inferences to the Allora chain.
+- **Auto-optimizer**: Evaluates predictions with ZPTAE-like scoring and retrains/tunes automatically, then commits/pushes updated model artifacts.
 - **Inference**: A container that conducts inferences, maintains the model state, and responds to internal inference requests via a Flask application. This node operates with a basic linear regression model for price predictions.
 - **Updater**: A cron-like container designed to update the inference node's data by daily fetching the latest market information from the data provider, ensuring the model stays current with new market trends.
 
@@ -84,6 +85,16 @@ A complete working example is provided in the `docker-compose.yml` file.
 ## Testing Inference Only
 
 This setup allows you to develop your model without the need to bring up the offchain worker or the updater. To test the inference model only:
+
+### Competition 16 specifics
+
+- Target: 24h log-return `ln(price_t / price_{t-1})` on daily aggregated OHLC.
+- Endpoint `/inference/SOL` returns the next 24h log-return prediction as a float.
+- Endpoint `/metrics` exposes the latest evaluation and improvement flag.
+
+### MCP server
+
+An MCP stdio server is provided at `mcp_server.py` for integration with MCP-capable tooling. Register it according to your client’s MCP configuration.
 
 1. Run the following command to start the inference node:
     ```sh

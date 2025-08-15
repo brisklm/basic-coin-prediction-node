@@ -3,10 +3,16 @@ import os
 import pickle
 from zipfile import ZipFile
 import pandas as pd
+import numpy as np
 from sklearn.kernel_ridge import KernelRidge
 from sklearn.linear_model import BayesianRidge, LinearRegression
 from sklearn.svm import SVR
-from updater import download_binance_daily_data, download_binance_current_day_data, download_coingecko_data, download_coingecko_current_day_data
+from updater import (
+    download_binance_daily_data,
+    download_binance_current_day_data,
+    download_coingecko_data,
+    download_coingecko_current_day_data,
+)
 from config import data_base_path, model_file_path, TOKEN, MODEL, CG_API_KEY
 
 
@@ -99,68 +105,90 @@ def format_data(files, data_provider):
             price_df.sort_index().to_csv(training_price_data_path)
 
 
-def load_frame(frame, timeframe):
-    print(f"Loading data...")
-    df = frame.loc[:,['open','high','low','close']].dropna()
-    df[['open','high','low','close']] = df[['open','high','low','close']].apply(pd.to_numeric)
-    df['date'] = frame['date'].apply(pd.to_datetime)
-    df.set_index('date', inplace=True)
+def load_frame(frame: pd.DataFrame, timeframe: str) -> pd.DataFrame:
+    print("Loading data...")
+    df = frame.loc[:, ["open", "high", "low", "close"]].dropna()
+    df[["open", "high", "low", "close"]] = df[["open", "high", "low", "close"]].apply(
+        pd.to_numeric
+    )
+    df["date"] = frame["date"].apply(pd.to_datetime)
+    df.set_index("date", inplace=True)
     df.sort_index(inplace=True)
 
-    return df.resample(f'{timeframe}', label='right', closed='right', origin='end').mean()
+    # Aggregate to desired timeframe (e.g., 1D for daily)
+    agg = df.resample(f"{timeframe}", label="right", closed="right", origin="end").agg(
+        {
+            "open": "first",
+            "high": "max",
+            "low": "min",
+            "close": "last",
+        }
+    ).dropna()
+    return agg
 
-def train_model(timeframe):
-    # Load the price data
+
+def compute_daily_log_return(daily_df: pd.DataFrame) -> pd.DataFrame:
+    # Compute 24h log-return ln(close_t / close_{t-1})
+    daily_df = daily_df.copy()
+    daily_df["log_return"] = np.log(daily_df["close"]).diff()
+    return daily_df.dropna()
+
+def train_model(timeframe: str):
+    # Load the aggregated price data
     price_data = pd.read_csv(training_price_data_path)
-    df = load_frame(price_data, timeframe)
+    df_daily = load_frame(price_data, timeframe)
+    df_lr = compute_daily_log_return(df_daily)
 
-    print(df.tail())
+    print(df_lr.tail())
 
-    y_train = df['close'].shift(-1).dropna().values
-    X_train = df[:-1]
+    # Predict next day's log-return using last day's OHLC as features
+    y_train = df_lr["log_return"].values
+    X_train = df_lr[["open", "high", "low", "close"]].values
 
     print(f"Training data shape: {X_train.shape}, {y_train.shape}")
 
-    # Define the model
-    if MODEL == "LinearRegression":
-        model = LinearRegression()
-    elif MODEL == "SVR":
-        model = SVR()
-    elif MODEL == "KernelRidge":
-        model = KernelRidge()
-    elif MODEL == "BayesianRidge":
-        model = BayesianRidge()
-    # Add more models here
+    # Model selection: if MODEL == "AUTO", choose based on simple CV else fixed
+    selected_model_name = MODEL
+    if selected_model_name is None or selected_model_name.upper() == "AUTO":
+        from model_selection import select_best_model
+
+        model = select_best_model(X_train, y_train)
     else:
-        raise ValueError("Unsupported model")
-    
+        if selected_model_name == "LinearRegression":
+            model = LinearRegression()
+        elif selected_model_name == "SVR":
+            model = SVR()
+        elif selected_model_name == "KernelRidge":
+            model = KernelRidge()
+        elif selected_model_name == "BayesianRidge":
+            model = BayesianRidge()
+        else:
+            raise ValueError("Unsupported model")
+
     # Train the model
     model.fit(X_train, y_train)
 
-    # create the model's parent directory if it doesn't exist
+    # Persist model
     os.makedirs(os.path.dirname(model_file_path), exist_ok=True)
-
-    # Save the trained model to a file
     with open(model_file_path, "wb") as f:
         pickle.dump(model, f)
 
-    print(f"Trained model saved to {model_file_path}")
+    print(f"Trained model (log-return) saved to {model_file_path}")
 
 
-def get_inference(token, timeframe, region, data_provider):
-    """Load model and predict current price."""
+def get_inference(token: str, timeframe: str, region: str, data_provider: str) -> float:
+    """Load model and predict next 24h log-return."""
     with open(model_file_path, "rb") as f:
         loaded_model = pickle.load(f)
 
-    # Get current price
+    # Get current aggregated features
     if data_provider == "coingecko":
-        X_new = load_frame(download_coingecko_current_day_data(token, CG_API_KEY), timeframe)
+        df_now = load_frame(download_coingecko_current_day_data(token, CG_API_KEY), timeframe)
     else:
-        X_new = load_frame(download_binance_current_day_data(f"{TOKEN}USDT", region), timeframe)
-    
-    print(X_new.tail())
-    print(X_new.shape)
+        df_now = load_frame(download_binance_current_day_data(f"{TOKEN}USDT", region), timeframe)
 
-    current_price_pred = loaded_model.predict(X_new)
+    print(df_now.tail())
+    X_new = df_now[["open", "high", "low", "close"]].tail(1).values
 
-    return current_price_pred[0]
+    log_return_pred = loaded_model.predict(X_new)
+    return float(log_return_pred[0])
