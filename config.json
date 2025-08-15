@@ -1,22 +1,40 @@
 {
-  "target": {
-    "horizon_hours": 24,
-    "aggregation": "1D",
-    "type": "log_return"
-  },
-  "model_selection": {
-    "enabled": true,
-    "candidate_models": [
-      {"name": "LinearRegression"},
-      {"name": "BayesianRidge", "params": {"n_iter": 300}},
-      {"name": "KernelRidge", "params": {"alpha": [0.1, 1.0, 10.0], "kernel": ["rbf", "linear"], "gamma": [null, 0.01, 0.001]}},
-      {"name": "SVR", "params": {"C": [0.5, 1.0, 5.0], "epsilon": [0.0, 0.001, 0.01], "kernel": ["rbf", "linear"]}}
-    ],
-    "cv_folds": 5,
-    "scoring": "zptae"
-  },
-  "optimizer": {
-    "trigger_threshold": 0.15,
-    "min_samples_for_eval": 20
+    "wallet": {
+      "chainId": "allora-testnet-1",
+      "keyringBackend": "test",
+      "keyringPassphrase": "",
+      "addressKeyName": "testkey",
+      "addressRestoreMnemonic": "unique bulk eight vehicle degree focus blood spice caution drill glimpse flag diagram typical select until trip void hole scorpion corn goddess keen choice",
+      "alloraHomeDir": "",
+      "gasPrices": "auto",
+      "gasPriceUpdateInterval": 5,
+      "maxFees": 50000000,
+      "gasAdjustment": 1.2,
+      "simulateGasFromStart": true,
+      "GasPerByte": 1,
+      "BaseGas": 200000,
+      "nodeRpcs": ["https://allora-rpc.testnet.allora.network","https://allora-rpc.monallo.ai","https://rpc.ankr.com/allora_testnet"],
+      "nodegRpcs": ["allora-grpc.testnet.allora.network:443"],
+      "maxRetries": 5,
+      "retryDelay": 3,
+      "accountSequenceRetryDelay": 1,
+      "launchRoutineDelay": 5,
+      "submitTx": true,
+      "blockDurationEstimated": 6,
+      "windowCorrectionFactor": 0.8,
+      "timeoutRPCSecondsQuery": 60,
+      "timeoutRPCSecondsTx": 300,
+      "timeoutRPCSecondsRegistration": 300,
+      "timeoutHTTPConnection": 10
+    },
+    "worker": [
+      {
+        "topicId": 62,
+        "inferenceEntrypointName": "apiAdapter",
+        "parameters": {
+          "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+          "Token": "SOL"
+        }
+      }
+    ]
   }
-}
