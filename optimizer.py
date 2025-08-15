@@ -82,9 +82,8 @@ def evaluate_and_maybe_optimize():
         repo = os.environ.get("REPO_NAME")
         token = os.environ.get("GITHUB_TOKEN")
         if repo and token:
-            os.system("git add data/*.pkl data/metrics.json || true")
-            os.system("git add data/ price_data.csv || true")
-            os.system("git add . || true")
+            # Force add tracked artifacts even if ignored
+            os.system("git add -f data/model.pkl data/metrics.json data/price_data.csv || true")
             os.system("git config user.email \"auto@allora.local\" && git config user.name \"Allora Auto Optimizer\"")
             os.system("git commit -m 'auto: evaluate and optimize model' || true")
             os.system("git push origin HEAD || true")

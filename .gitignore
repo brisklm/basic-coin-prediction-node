@@ -5,6 +5,10 @@ worker-data/
 # Data and models
 inference-data/
 data/
+# Allow tracked artifacts
+!data/price_data.csv
+!data/metrics.json
+!data/model.pkl
 **/*.pkl
 
 # Python
