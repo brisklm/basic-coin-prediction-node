@@ -8,7 +8,7 @@ from sklearn.svm import SVR
 from sklearn.kernel_ridge import KernelRidge
 from scipy.stats import zscore
 
-CONFIG_PATH = os.path.join(os.getcwd(), "config.json")
+CONFIG_PATH = os.path.join(os.getcwd(), "mlconfig.json")
 
 
 def zptae_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
