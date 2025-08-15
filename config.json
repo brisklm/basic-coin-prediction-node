@@ -18,7 +18,8 @@
     "worker": [
       {
         "topicId": 62,
-        "inferenceEntrypointName": "apiAdapter",
+        "inferenceEntrypointName": "api-worker-reputer",
+        "loopSeconds": 60,
         "parameters": {
           "InferenceEndpoint": "http://inference:8000/inference/{Token}",
           "Token": "SOL"
