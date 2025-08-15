@@ -17,12 +17,12 @@
     },
     "worker": [
         {
-            "topicId": 1,
+            "topicId": 16,
             "inferenceEntrypointName": "api-worker-reputer",
-            "loopSeconds": 5,
+            "loopSeconds": 60,
             "parameters": {
                 "InferenceEndpoint": "http://inference:8000/inference/{Token}",
-                "Token": "ETH"
+                "Token": "SOL"
             }
         }
     ]
