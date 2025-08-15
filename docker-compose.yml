@@ -35,6 +35,8 @@ services:
   worker:
     container_name: worker
     image: alloranetwork/allora-offchain-node:v0.6.0
+    platform: linux/amd64
+    pull_policy: always
     volumes:
       - ./worker-data:/data
     depends_on:
