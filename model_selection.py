@@ -3,6 +3,7 @@ import os
 from typing import Tuple
 import numpy as np
 from sklearn.model_selection import TimeSeriesSplit
+import inspect
 from sklearn.linear_model import LinearRegression, BayesianRidge
 from sklearn.svm import SVR
 from sklearn.kernel_ridge import KernelRidge
@@ -28,15 +29,24 @@ def read_config():
         return json.load(f)
 
 
+def _filter_supported_kwargs(klass, params: dict | None) -> dict:
+    if not params:
+        return {}
+    sig = inspect.signature(klass.__init__)
+    allowed = set(sig.parameters.keys())
+    # Drop unknown and None values
+    return {k: v for k, v in params.items() if k in allowed and v is not None}
+
+
 def build_model(name: str, params: dict | None):
     if name == "LinearRegression":
-        return LinearRegression()
+        return LinearRegression(**_filter_supported_kwargs(LinearRegression, params))
     if name == "BayesianRidge":
-        return BayesianRidge(**(params or {}))
+        return BayesianRidge(**_filter_supported_kwargs(BayesianRidge, params))
     if name == "KernelRidge":
-        return KernelRidge(**(params or {}))
+        return KernelRidge(**_filter_supported_kwargs(KernelRidge, params))
     if name == "SVR":
-        return SVR(**(params or {}))
+        return SVR(**_filter_supported_kwargs(SVR, params))
     raise ValueError(f"Unknown model {name}")
 
 
