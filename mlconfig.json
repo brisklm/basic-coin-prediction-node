@@ -1,0 +1,22 @@
+{
+  "target": {
+    "horizon_hours": 24,
+    "aggregation": "1D",
+    "type": "log_return"
+  },
+  "model_selection": {
+    "enabled": true,
+    "candidate_models": [
+      {"name": "LinearRegression"},
+      {"name": "BayesianRidge", "params": {"n_iter": 300}},
+      {"name": "KernelRidge", "params": {"alpha": [0.1, 1.0, 10.0], "kernel": ["rbf", "linear"], "gamma": [null, 0.01, 0.001]}},
+      {"name": "SVR", "params": {"C": [0.5, 1.0, 5.0], "epsilon": [0.0, 0.001, 0.01], "kernel": ["rbf", "linear"]}}
+    ],
+    "cv_folds": 5,
+    "scoring": "zptae"
+  },
+  "optimizer": {
+    "trigger_threshold": 0.15,
+    "min_samples_for_eval": 20
+  }
+}
