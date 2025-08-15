@@ -12,6 +12,11 @@ def update_data():
     """Download price data, format data and train model."""
     files = download_data(TOKEN, TRAINING_DAYS, REGION, DATA_PROVIDER)
     format_data(files, DATA_PROVIDER)
+    # Ensure data CSV exists before training
+    import os
+    from model import training_price_data_path
+    if not os.path.exists(training_price_data_path):
+        raise RuntimeError("Data download failed; cannot find training CSV. Check provider/API and network.")
     train_model(TIMEFRAME)
     # Evaluate and possibly optimize; also commits changes if improved
     try:

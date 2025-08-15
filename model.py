@@ -34,7 +34,18 @@ def download_data_coingecko(token, training_days):
 
 def download_data(token, training_days, region, data_provider):
     if data_provider == "coingecko":
-        return download_data_coingecko(token, int(training_days))
+        files = download_data_coingecko(token, int(training_days))
+        if not files:
+            # Retry with smaller windows acceptable by CG if 'max' or large windows fail
+            for td in [365, 180, 90, 30, 14, 7]:
+                print(f"Retrying CoinGecko with days={td}")
+                files = download_data_coingecko(token, td)
+                if files:
+                    break
+        if not files:
+            print("CoinGecko unavailable; falling back to Binance daily zips (120d)")
+            return download_data_binance(token, min(int(training_days), 120), region)
+        return files
     elif data_provider == "binance":
         return download_data_binance(token, training_days, region)
     else:
@@ -135,6 +146,11 @@ def compute_daily_log_return(daily_df: pd.DataFrame) -> pd.DataFrame:
 
 def train_model(timeframe: str):
     # Load the aggregated price data
+    if not os.path.exists(training_price_data_path):
+        raise FileNotFoundError(
+            f"Training data not found at {training_price_data_path}. "
+            "Ensure data download succeeded (fallback to Binance is automatic if CoinGecko fails)."
+        )
     price_data = pd.read_csv(training_price_data_path)
     df_daily = load_frame(price_data, timeframe)
     df_lr = compute_daily_log_return(df_daily)
@@ -182,8 +198,13 @@ def get_inference(token: str, timeframe: str, region: str, data_provider: str) -
         loaded_model = pickle.load(f)
 
     # Get current aggregated features
+    df_now = None
     if data_provider == "coingecko":
-        df_now = load_frame(download_coingecko_current_day_data(token, CG_API_KEY), timeframe)
+        try:
+            df_now = load_frame(download_coingecko_current_day_data(token, CG_API_KEY), timeframe)
+        except Exception as e:
+            print(f"CoinGecko current-day fetch failed: {e}; falling back to Binance")
+            df_now = load_frame(download_binance_current_day_data(f"{TOKEN}USDT", region), timeframe)
     else:
         df_now = load_frame(download_binance_current_day_data(f"{TOKEN}USDT", region), timeframe)
 
