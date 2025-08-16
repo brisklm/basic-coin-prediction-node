@@ -32,9 +32,19 @@ services:
       inference:
         condition: service_healthy
 
+  mcp-optimizer:
+    container_name: mcp-optimizer
+    build: .
+    command: python -u /app/mcp/optimizer_server.py
+    ports:
+      - "8765:8765"
+    depends_on:
+      inference:
+        condition: service_healthy
+
   worker:
     container_name: worker
-    image: alloranetwork/allora-offchain-node:v0.6.0
+    image: alloranetwork/allora-offchain-node:v0.12.0
     platform: linux/amd64
     pull_policy: always
     volumes:

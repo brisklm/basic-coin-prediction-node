@@ -9,6 +9,7 @@ from config import data_base_path, model_file_path
 from model_selection import zptae_loss
 
 METRICS_PATH = os.path.join(data_base_path, "metrics.json")
+MLCONFIG_PATH = os.path.join(os.getcwd(), "mlconfig.json")
 
 
 def _safe_read_metrics() -> dict[str, Any]:
@@ -77,15 +78,75 @@ def evaluate_and_maybe_optimize():
         with open(model_file_path, "wb") as f:
             f.write(prev_model_bytes)
 
+    # If not improved, widen the hyperparameter search space in mlconfig.json automatically
+    if not improved:
+        try:
+            if os.path.exists(MLCONFIG_PATH):
+                with open(MLCONFIG_PATH, "r") as f:
+                    mlcfg = json.load(f)
+            else:
+                mlcfg = {}
+
+            ms = mlcfg.setdefault("model_selection", {})
+            candidates = ms.setdefault("candidate_models", [])
+
+            def ensure_model(name: str) -> dict:
+                for c in candidates:
+                    if c.get("name") == name:
+                        return c
+                c = {"name": name}
+                candidates.append(c)
+                return c
+
+            # Expand SVR grid
+            svr = ensure_model("SVR")
+            svr_params = svr.setdefault("params", {})
+            def extend(key, values):
+                cur = svr_params.get(key, [])
+                if not isinstance(cur, list):
+                    cur = [cur]
+                merged = sorted(set(cur + values), key=lambda x: (str(type(x)), x))
+                svr_params[key] = merged
+            extend("C", [0.1, 0.5, 1.0, 5.0, 10.0])
+            extend("epsilon", [0.0, 1e-4, 1e-3, 1e-2, 0.1])
+            extend("kernel", ["rbf", "linear", "poly"]) 
+
+            # Expand KernelRidge grid
+            kr = ensure_model("KernelRidge")
+            kr_params = kr.setdefault("params", {})
+            def extend_kr(key, values):
+                cur = kr_params.get(key, [])
+                if not isinstance(cur, list):
+                    cur = [cur]
+                merged = sorted(set(cur + values), key=lambda x: (str(type(x)), str(x)))
+                kr_params[key] = merged
+            extend_kr("alpha", [0.01, 0.1, 1.0, 10.0, 100.0])
+            extend_kr("kernel", ["rbf", "linear"]) 
+            extend_kr("gamma", [None, 1e-4, 1e-3, 1e-2, 1e-1])
+
+            # Ensure LinearRegression and BayesianRidge are present
+            ensure_model("LinearRegression")
+            br = ensure_model("BayesianRidge")
+            # remove unsupported params if present
+            if isinstance(br.get("params"), dict):
+                br["params"] = {k: v for k, v in br["params"].items() if k in []}
+
+            # Persist updated mlconfig
+            with open(MLCONFIG_PATH, "w") as f:
+                json.dump(mlcfg, f, indent=2)
+        except Exception as e:
+            # Non-fatal: log and continue
+            print(f"Auto-widen mlconfig failed: {e}")
+
     # Auto-commit and push code/data changes (model, metrics)
     try:
         repo = os.environ.get("REPO_NAME")
         token = os.environ.get("GITHUB_TOKEN")
         if repo and token:
-            # Force add tracked artifacts even if ignored
-            os.system("git add -f data/model.pkl data/metrics.json data/price_data.csv || true")
+            # Force add tracked artifacts even if ignored and include mlconfig updates
+            os.system("git add -f data/model.pkl data/metrics.json data/price_data.csv mlconfig.json || true")
             os.system("git config user.email \"auto@allora.local\" && git config user.name \"Allora Auto Optimizer\"")
-            os.system("git commit -m 'auto: evaluate and optimize model' || true")
+            os.system("git commit -m 'auto: evaluate and optimize model (and widen search if needed)' || true")
             os.system("git push origin HEAD || true")
     except Exception:
         pass
