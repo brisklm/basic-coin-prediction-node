@@ -7,7 +7,8 @@ aiohttp
 multiprocess
 scikit_learn
 python-dotenv
-mcp>=1.1.0
+pydantic_core>=2.18.0
+mcp[fastapi]>=1.1.0
 pydantic>=2.7.0
 scipy>=1.11.0
 lightgbm>=4.0.0

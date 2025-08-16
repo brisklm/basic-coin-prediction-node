@@ -1,0 +1,3 @@
+ALLORA_OFFCHAIN_NODE_CONFIG_JSON='{"wallet":{"addressKeyName":"testkey","addressRestoreMnemonic":"unique bulk eight vehicle degree focus blood spice caution drill glimpse flag diagram typical select until trip void hole scorpion corn goddess keen choice","alloraHomeDir":"","gas":"auto","gasAdjustment":1.5,"gasPrices":"auto","maxFees":50000000,"nodeRpc":"https://allora-rpc.testnet.allora.network","maxRetries":5,"retryDelay":3,"accountSequenceRetryDelay":5,"submitTx":true,"blockDurationEstimated":6,"windowCorrectionFactor":0.8},"worker":[{"topicId":62,"inferenceEntrypointName":"api-worker-reputer","loopSeconds":60,"parameters":{"InferenceEndpoint":"http://inference:8000/inference/{Token}","Token":"SOL"}}]}'
+NAME=testkey
+ENV_LOADED=true
