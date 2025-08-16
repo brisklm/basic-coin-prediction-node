@@ -1,11 +1,14 @@
-from mcp.server.fastapi import FastAPIServer
+try:
+    from mcp.server.fastapi import FastAPIServer
+except Exception:
+    FastAPIServer = None
 from fastapi import FastAPI
 from typing import Any
 import os
 import json
 
 app = FastAPI()
-server = FastAPIServer(app)
+server = FastAPIServer(app) if FastAPIServer else None
 
 @app.get("/widen")
 def widen() -> dict[str, Any]:

@@ -13,3 +13,5 @@ pydantic>=2.7.0
 scipy>=1.11.0
 lightgbm>=4.0.0
 xgboost>=2.0.0
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
