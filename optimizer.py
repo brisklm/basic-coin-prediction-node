@@ -48,7 +48,11 @@ def evaluate_and_maybe_optimize():
     y = y_series.values
     X = X_df.values
 
-    current_score = evaluate_current_model(X, y)
+    # Split holdout for out-of-sample evaluation
+    holdout = max(10, min(50, len(X) // 5))
+    split_idx = len(X) - holdout
+    X_train, y_train = X[:split_idx], y[:split_idx]
+    X_test, y_test = X[split_idx:], y[split_idx:]
 
     # Retrain via AUTO selection and compare
     prev_model_bytes = None
@@ -60,41 +64,43 @@ def evaluate_and_maybe_optimize():
 
     with open(model_file_path, "rb") as f:
         new_model = pickle.load(f)
-    new_pred = new_model.predict(X)
-    # Reference std for ZPTAE based on last 100 ground-truths
-    ref_std = float(np.std(y[-min(100, len(y)):]) + 1e-8)
-    # Component metrics for current
+    # Reference std for ZPTAE based on last 100 ground-truths in training window
+    ref_std = float(np.std(y_train[-min(100, len(y_train)):]) + 1e-8)
+
+    # Component metrics for current model on holdout
     try:
         with open(model_file_path, "rb") as f:
             cur_model = pickle.load(f)
-        cur_pred = cur_model.predict(X)
-        cur_z = zptae_loss(y, cur_pred, ref_std=ref_std)
-        cur_r = rmse(y, cur_pred)
-        cur_d = direction_accuracy(y, cur_pred)
+        cur_pred = cur_model.predict(X_test)
+        cur_z = zptae_loss(y_test, cur_pred, ref_std=ref_std)
+        cur_r = rmse(y_test, cur_pred)
+        cur_d = direction_accuracy(y_test, cur_pred)
     except Exception:
-        cur_z = current_score
+        cur_z = float("nan")
         cur_r = float("nan")
         cur_d = float("nan")
-    # Component metrics for new
-    new_score = zptae_loss(y, new_pred, ref_std=ref_std)
-    new_r = rmse(y, new_pred)
-    new_d = direction_accuracy(y, new_pred)
+    # Component metrics for new model on holdout
+    new_pred = new_model.predict(X_test)
+    new_score = zptae_loss(y_test, new_pred, ref_std=ref_std)
+    new_r = rmse(y_test, new_pred)
+    new_d = direction_accuracy(y_test, new_pred)
 
-    improved = new_score <= current_score
+    improved = new_score <= (cur_z if np.isfinite(cur_z) else float("inf"))
 
     # Write metrics
     os.makedirs(os.path.dirname(METRICS_PATH), exist_ok=True)
     metrics = _safe_read_metrics()
     metrics.update({
         "timestamp": datetime.utcnow().isoformat() + "Z",
-        "current_score": current_score,
+        "current_score": cur_z,
         "new_score": new_score,
         "improved": improved,
         "components": {
             "reference_std_last100": ref_std,
             "current": {"zptae": cur_z, "rmse": cur_r, "direction_accuracy": cur_d},
             "new": {"zptae": new_score, "rmse": new_r, "direction_accuracy": new_d}
-        }
+        },
+        "holdout": {"size": int(holdout), "total_samples": int(len(X))}
     })
     with open(METRICS_PATH, "w") as f:
         json.dump(metrics, f, indent=2)
