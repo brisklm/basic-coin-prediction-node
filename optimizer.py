@@ -6,7 +6,8 @@ import numpy as np
 import pandas as pd
 from typing import Any
 from config import data_base_path, model_file_path
-from model_selection import zptae_loss
+from features import build_features
+from model_selection import zptae_loss, rmse, direction_accuracy
 
 METRICS_PATH = os.path.join(data_base_path, "metrics.json")
 MLCONFIG_PATH = os.path.join(os.getcwd(), "mlconfig.json")
@@ -41,8 +42,11 @@ def evaluate_and_maybe_optimize():
     df = pd.read_csv(train_csv)
     df_daily = mdl.load_frame(df, "1D")
     df_lr = mdl.compute_daily_log_return(df_daily)
-    y = df_lr["log_return"].values
-    X = df_lr[["open", "high", "low", "close"]].values
+    # Use same feature engineering as training
+    variant = os.environ.get("FEATURES_VARIANT", "lags_medium")
+    X_df, y_series = build_features(df_lr, variant=variant)
+    y = y_series.values
+    X = X_df.values
 
     current_score = evaluate_current_model(X, y)
 
@@ -57,7 +61,24 @@ def evaluate_and_maybe_optimize():
     with open(model_file_path, "rb") as f:
         new_model = pickle.load(f)
     new_pred = new_model.predict(X)
-    new_score = zptae_loss(y, new_pred)
+    # Reference std for ZPTAE based on last 100 ground-truths
+    ref_std = float(np.std(y[-min(100, len(y)):]) + 1e-8)
+    # Component metrics for current
+    try:
+        with open(model_file_path, "rb") as f:
+            cur_model = pickle.load(f)
+        cur_pred = cur_model.predict(X)
+        cur_z = zptae_loss(y, cur_pred, ref_std=ref_std)
+        cur_r = rmse(y, cur_pred)
+        cur_d = direction_accuracy(y, cur_pred)
+    except Exception:
+        cur_z = current_score
+        cur_r = float("nan")
+        cur_d = float("nan")
+    # Component metrics for new
+    new_score = zptae_loss(y, new_pred, ref_std=ref_std)
+    new_r = rmse(y, new_pred)
+    new_d = direction_accuracy(y, new_pred)
 
     improved = new_score <= current_score
 
@@ -68,7 +89,12 @@ def evaluate_and_maybe_optimize():
         "timestamp": datetime.utcnow().isoformat() + "Z",
         "current_score": current_score,
         "new_score": new_score,
-        "improved": improved
+        "improved": improved,
+        "components": {
+            "reference_std_last100": ref_std,
+            "current": {"zptae": cur_z, "rmse": cur_r, "direction_accuracy": cur_d},
+            "new": {"zptae": new_score, "rmse": new_r, "direction_accuracy": new_d}
+        }
     })
     with open(METRICS_PATH, "w") as f:
         json.dump(metrics, f, indent=2)
