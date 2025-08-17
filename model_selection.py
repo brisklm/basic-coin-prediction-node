@@ -8,6 +8,7 @@ from sklearn.linear_model import LinearRegression, BayesianRidge
 from sklearn.svm import SVR
 from sklearn.kernel_ridge import KernelRidge
 from scipy.stats import zscore
+from sklearn.metrics import mean_squared_error
 
 CONFIG_PATH = os.path.join(os.getcwd(), "mlconfig.json")
 
@@ -20,6 +21,24 @@ def zptae_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     p = 1.3
     transformed = np.tanh(abs_err) + np.power(abs_err, p) * 0.05
     return float(np.mean(transformed))
+
+
+def rmse(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    return float(np.sqrt(mean_squared_error(y_true, y_pred)))
+
+
+def direction_accuracy(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    s_true = np.sign(y_true)
+    s_pred = np.sign(y_pred)
+    return float(np.mean((s_true == s_pred).astype(np.float32)))
+
+
+def mztae(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    # Modified Z-Transformed Absolute Error variant
+    # Standardize true values; then power-tanh of abs error
+    y_std = (y_true - 0.0) / (np.std(y_true) + 1e-8)
+    abs_err = np.abs(y_std - y_pred)
+    return float(np.mean(np.tanh(abs_err) + np.power(abs_err, 1.2) * 0.05))
 
 
 def read_config():
@@ -82,7 +101,13 @@ def time_series_cv_score(model, X: np.ndarray, y: np.ndarray, splits: int = 5) -
         y_train, y_val = y[train_idx], y[test_idx]
         model.fit(X_train, y_train)
         y_hat = model.predict(X_val)
-        scores.append(zptae_loss(y_val, y_hat))
+        # Composite scoring emphasizing ZPTAE but checking RMSE and direction
+        z = zptae_loss(y_val, y_hat)
+        r = rmse(y_val, y_hat)
+        d = direction_accuracy(y_val, y_hat)
+        # Lower is better; reward higher direction by subtracting
+        composite = z + 0.2 * r - 0.05 * d
+        scores.append(composite)
     return float(np.mean(scores))
 
 
