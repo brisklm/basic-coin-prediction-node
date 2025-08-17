@@ -15,13 +15,18 @@ from config import data_base_path
 CONFIG_PATH = os.path.join(os.getcwd(), "mlconfig.json")
 
 
-def zptae_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
-    # Z-transform with reference mean = 0 and rolling std estimation proxy
-    # Here we standardize y_true using its own std, avoiding leakage by TSSplit
+def zptae_loss(y_true: np.ndarray, y_pred: np.ndarray, ref_std: float | None = None) -> float:
+    """Modified Z-Transformed Power-Tanh Absolute Error.
+    - Reference mean fixed at 0
+    - Reference std is supplied (ideally rolling std of last 100 true log-returns)
+    """
     abs_err = np.abs(y_true - y_pred)
-    # smooth power-tanh: tanh(x) + x^p tail; use p=1.3
+    # standardize by reference std (fallback to sample std)
+    if ref_std is None or not np.isfinite(ref_std) or ref_std <= 0:
+        ref_std = float(np.std(y_true[-min(100, len(y_true)):]) + 1e-8)
+    z_abs = abs_err / ref_std
     p = 1.3
-    transformed = np.tanh(abs_err) + np.power(abs_err, p) * 0.05
+    transformed = np.tanh(z_abs) + np.power(z_abs, p) * 0.05
     return float(np.mean(transformed))
 
 
@@ -103,8 +108,9 @@ def time_series_cv_score(model, X: np.ndarray, y: np.ndarray, splits: int = 5) -
         y_train, y_val = y[train_idx], y[test_idx]
         model.fit(X_train, y_train)
         y_hat = model.predict(X_val)
-        # Composite scoring emphasizing ZPTAE but checking RMSE and direction
-        z = zptae_loss(y_val, y_hat)
+        # ZPTAE with reference std from the last 100 ground-truth in training window
+        ref_std = float(np.std(y_train[-min(100, len(y_train)):]) + 1e-8)
+        z = zptae_loss(y_val, y_hat, ref_std=ref_std)
         r = rmse(y_val, y_hat)
         d = direction_accuracy(y_val, y_hat)
         # Lower is better; reward higher direction by subtracting
