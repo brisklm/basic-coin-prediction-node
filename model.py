@@ -196,12 +196,15 @@ def train_model(timeframe: str):
 
 
 def get_inference(token: str, timeframe: str, region: str, data_provider: str) -> float:
-    """Load model and predict next 24h log-return."""
+    """Load model and predict next 24h log-return using consistent feature space.
+
+    We append the latest aggregated bar to the historical training frame,
+    rebuild features, and take the last row to ensure shapes match the model.
+    """
     with open(model_file_path, "rb") as f:
         loaded_model = pickle.load(f)
 
-    # Get current aggregated features
-    df_now = None
+    # Get current aggregated bar
     if data_provider == "coingecko":
         try:
             df_now = load_frame(download_coingecko_current_day_data(token, CG_API_KEY), timeframe)
@@ -211,12 +214,25 @@ def get_inference(token: str, timeframe: str, region: str, data_provider: str) -
     else:
         df_now = load_frame(download_binance_current_day_data(f"{TOKEN}USDT", region), timeframe)
 
-    print(df_now.tail())
-    # For inference, construct features using latest window
-    df_now_lr = df_now.copy()
-    df_now_lr["log_return"] = np.log(df_now_lr["close"]).diff()
-    X_df_now, _ = build_features(df_now_lr, variant=os.environ.get("FEATURES_VARIANT", "lags_medium"))
-    X_new = X_df_now.tail(1).values
+    # Load historical training price data to provide context for feature engineering
+    hist_df = None
+    if os.path.exists(training_price_data_path):
+        hist_df = load_frame(pd.read_csv(training_price_data_path), timeframe)
 
+    if hist_df is not None and not hist_df.empty:
+        combined = pd.concat([hist_df, df_now]).sort_index().drop_duplicates()
+    else:
+        combined = df_now
+
+    # Recompute log-returns on combined series and build features
+    combined_lr = combined.copy()
+    combined_lr["log_return"] = np.log(combined_lr["close"]).diff()
+    variant = os.environ.get("FEATURES_VARIANT", "lags_medium")
+    X_df_all, _ = build_features(combined_lr, variant=variant)
+
+    if X_df_all.empty:
+        raise RuntimeError("Insufficient context to build features for inference")
+
+    X_new = X_df_all.tail(1).values
     log_return_pred = loaded_model.predict(X_new)
     return float(log_return_pred[0])
