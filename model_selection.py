@@ -9,6 +9,8 @@ from sklearn.svm import SVR
 from sklearn.kernel_ridge import KernelRidge
 from scipy.stats import zscore
 from sklearn.metrics import mean_squared_error
+from datetime import datetime
+from config import data_base_path
 
 CONFIG_PATH = os.path.join(os.getcwd(), "mlconfig.json")
 
@@ -121,13 +123,47 @@ def select_best_model(X: np.ndarray, y: np.ndarray):
     ])
     best_score = float("inf")
     best_model = None
+    best_name: str | None = None
+
+    # Collect comparison logs
+    comparison: dict[str, dict] = {}
+
+    print("Model selection: evaluating candidates...")
     for c in candidates:
         name = c.get("name")
+        best_for_model = float("inf")
+        best_params_for_model = None
         grid = tune_param_grid(name, c.get("params"))
         for params in grid:
             model = build_model(name, params)
             score = time_series_cv_score(model, X, y, splits=ms.get("cv_folds", 5))
-            if score < best_score:
-                best_score = score
-                best_model = build_model(name, params)
+            if score < best_for_model:
+                best_for_model = score
+                best_params_for_model = params
+        if best_for_model < float("inf"):
+            comparison[name] = {
+                "cv_score": best_for_model,
+                "best_params": best_params_for_model,
+            }
+            print(f" - {name}: best CV score={best_for_model:.6f} params={best_params_for_model}")
+            if best_for_model < best_score:
+                best_score = best_for_model
+                best_model = build_model(name, best_params_for_model)
+                best_name = name
+
+    # Persist comparison log
+    try:
+        os.makedirs(data_base_path, exist_ok=True)
+        out_path = os.path.join(data_base_path, "model_selection.json")
+        with open(out_path, "w") as f:
+            json.dump({
+                "timestamp": datetime.utcnow().isoformat() + "Z",
+                "results": comparison,
+                "best": {"name": best_name, "cv_score": best_score}
+            }, f, indent=2)
+    except Exception as e:
+        print(f"Warning: could not write model_selection.json: {e}")
+
+    if best_name is not None:
+        print(f"Selected model: {best_name} with CV score={best_score:.6f}")
     return best_model
