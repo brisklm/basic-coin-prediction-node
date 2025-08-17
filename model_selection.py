@@ -113,8 +113,8 @@ def time_series_cv_score(model, X: np.ndarray, y: np.ndarray, splits: int = 5) -
         z = zptae_loss(y_val, y_hat, ref_std=ref_std)
         r = rmse(y_val, y_hat)
         d = direction_accuracy(y_val, y_hat)
-        # Lower is better; reward higher direction by subtracting
-        composite = z + 0.2 * r - 0.05 * d
+        # Lower is better; small reward for direction but cap it to avoid overfitting
+        composite = z + 0.2 * r - 0.02 * min(d, 0.7)
         scores.append(composite)
     return float(np.mean(scores))
 

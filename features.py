@@ -56,17 +56,17 @@ def build_features(df_lr: pd.DataFrame, variant: str = "base") -> Tuple[pd.DataF
         if variant == "lags_small":
             lags = _make_lags(r, [1, 2, 3])
             rolls = _rolling_stats(r, [3, 7])
-            feats = pd.concat([X, r.rename("r1"), lags, rolls], axis=1)
+            feats = pd.concat([X, lags, rolls], axis=1)
         elif variant == "lags_medium":
             lags = _make_lags(r, list(range(1, 8)))
             rolls = _rolling_stats(r, [3, 7, 14])
             ewms = _ewm_features(r, [5, 10])
-            feats = pd.concat([X, r.rename("r1"), lags, rolls, ewms], axis=1)
+            feats = pd.concat([X, lags, rolls, ewms], axis=1)
         elif variant == "lags_large":
             lags = _make_lags(r, list(range(1, 15)))
             rolls = _rolling_stats(r, [3, 7, 14, 28])
             ewms = _ewm_features(r, [5, 10, 20])
-            feats = pd.concat([X, r.rename("r1"), lags, rolls, ewms], axis=1)
+            feats = pd.concat([X, lags, rolls, ewms], axis=1)
         else:
             feats = X
 
