@@ -14,6 +14,7 @@ from updater import (
     download_coingecko_current_day_data,
 )
 from config import data_base_path, model_file_path, TOKEN, MODEL, CG_API_KEY
+from features import build_features
 
 
 binance_data_path = os.path.join(data_base_path, "binance")
@@ -158,8 +159,10 @@ def train_model(timeframe: str):
     print(df_lr.tail())
 
     # Predict next day's log-return using last day's OHLC as features
-    y_train = df_lr["log_return"].values
-    X_train = df_lr[["open", "high", "low", "close"]].values
+    # Build features with a medium variant by default
+    X_df, y_series = build_features(df_lr, variant=os.environ.get("FEATURES_VARIANT", "lags_medium"))
+    y_train = y_series.values
+    X_train = X_df.values
 
     print(f"Training data shape: {X_train.shape}, {y_train.shape}")
 
@@ -209,7 +212,11 @@ def get_inference(token: str, timeframe: str, region: str, data_provider: str) -
         df_now = load_frame(download_binance_current_day_data(f"{TOKEN}USDT", region), timeframe)
 
     print(df_now.tail())
-    X_new = df_now[["open", "high", "low", "close"]].tail(1).values
+    # For inference, construct features using latest window
+    df_now_lr = df_now.copy()
+    df_now_lr["log_return"] = np.log(df_now_lr["close"]).diff()
+    X_df_now, _ = build_features(df_now_lr, variant=os.environ.get("FEATURES_VARIANT", "lags_medium"))
+    X_new = X_df_now.tail(1).values
 
     log_return_pred = loaded_model.predict(X_new)
     return float(log_return_pred[0])
