@@ -1,0 +1,46 @@
+{
+  "competition_url": "https://forge.allora.network/competitions/16",
+  "solution_timestamp": "2025-08-18T16:58:47.123349",
+  "training_report": {
+    "models_trained": [
+      "baseline"
+    ],
+    "ensemble_methods": [],
+    "optimization_applied": true,
+    "competition_specific": true,
+    "feature_count": 5,
+    "sample_count": 1079,
+    "competition_title": "1 day SOL/USD Log-Return Prediction",
+    "detected_metric": "rmse"
+  },
+  "competition_insights": {
+    "competition_info": {
+      "title": "1 day SOL/USD Log-Return Prediction",
+      "problem_type": "regression",
+      "evaluation_metric": "rmse",
+      "target_column": "target"
+    },
+    "optimization_applied": true,
+    "repositories_analyzed": 1,
+    "recommendations": [
+      "Pay attention to outliers and consider robust scaling methods",
+      "Consider robust preprocessing and ensemble methods to minimize RMSE"
+    ],
+    "best_practices": [
+      "Most successful models: LinearRegression",
+      "Common techniques: StandardScaler, ewm, r2_score, rolling, mean_absolute_error"
+    ]
+  },
+  "files_generated": {
+    "submission": "competition_results/final_submission.csv",
+    "model": "competition_results/trained_model_complete.pkl",
+    "metadata": "competition_results/final_submission_metadata.json"
+  },
+  "autonomous_features": {
+    "competition_analysis": true,
+    "github_analysis": false,
+    "mcp_optimization": true,
+    "cyclical_optimization": false,
+    "auto_configuration": true
+  }
+}

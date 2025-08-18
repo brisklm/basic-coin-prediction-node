@@ -1,0 +1,23 @@
+cv_folds: 5
+ensemble_methods:
+- voting
+- stacking
+feature_engineering: false
+feature_selection: false
+max_trials: 100
+metric: auto
+models:
+  catboost: false
+  lgb: false
+  lr: true
+  rf: true
+  svm: false
+  xgb: true
+preprocessing:
+  encode_categorical: false
+  handle_missing: false
+  remove_outliers: false
+  scale_features: false
+problem_type: auto
+random_state: 42
+target_column: target

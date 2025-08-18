@@ -1,0 +1,352 @@
+{
+  "competition_info": {
+    "title": "Unknown Competition",
+    "description": "",
+    "problem_type": "auto",
+    "evaluation_metric": "auto",
+    "target_column": "target",
+    "rules": []
+  },
+  "github_analysis": {
+    "repositories": [
+      {
+        "name": "bank-marketing-by-oumaima-gasmi-",
+        "description": "The older marketing options have contributed minimal in increasing the business of banks. Due to internal competition and financial crisis European Banks were under pressure to increase their financial assets. They offered long term deposits with good interest rates to the people using direct marketing strategy but contacting many people takes lot of time and success rate is also less. So they want to take help of the technology to come up with a solution that increases the efficiency by making fewer calls but improves the success rate.Portuguese Banking Institution has provided the data related to marketing campaigns that took over phone calls.   BUSINESS PROBLEM: Finding out the characteristics that are helping Bank to make customers successfully subscribe for deposits, which helps in increasing campaign efficiently and selecting high value customers.  MACHINE LEARNING PROBLEM: The goal is to build Machine Learning model that learns the unknown patterns, maps and several input features classifying whether client will subscribe for longer deposits or not.  DATA SET OVERVIEW:  The data is related with direct marketing campaigns of a Portuguese banking institution.The marketing campaigns were based on phone calls. Often, more than one contact to the same client was required, in order to access if the product (bank term deposit) would be (\u2018yes\u2019) or (\u2018no\u2019).  Data set is taken from UCI Machine Learning repository:  1) bank-additional-full.csv with all examples (41188), 2) bank-additional.csv with 10% of the examples (4119).  Attribute Information:  Input variables: # bank client data: 1 \u2014 age (numeric) 2 \u2014 job : type of job (categorical: \u2018admin.\u2019,\u2019blue-collar\u2019,\u2019entrepreneur\u2019,\u2019housemaid\u2019,\u2019management\u2019,\u2019retired\u2019,\u2019self-employed\u2019,\u2019services\u2019,\u2019student\u2019,\u2019technician\u2019,\u2019unemployed\u2019,\u2019unknown\u2019) 3 \u2014 marital : marital status (categorical: \u2018divorced\u2019, \u2018married\u2019, \u2018single\u2019, \u2018unknown\u2019; note: \u2018divorced\u2019 means divorced or widowed) 4 \u2014 education (categorical: \u2018basic.4y\u2019,\u2019basic.6y\u2019,\u2019basic.9y\u2019,\u2019high.school\u2019,\u2019illiterate\u2019,\u2019professional.course\u2019,\u2019university.degree\u2019,\u2019unknown\u2019) 5 \u2014 default: has credit in default? (categorical: \u2018no\u2019, \u2018yes\u2019, \u2018unknown\u2019) 6 \u2014 housing: has housing loan? (categorical: \u2018no\u2019, \u2018yes\u2019 ,\u2019unknown\u2019) 7 \u2014 loan: has personal loan? (categorical: \u2018no\u2019, \u2018yes\u2019, \u2018unknown\u2019) # related with the last contact of the current campaign: 8 \u2014 contact: contact communication type (categorical: \u2018cellular\u2019, \u2018telephone\u2019) 9 \u2014 month: last contact month of year (categorical: \u2018jan\u2019, \u2018feb\u2019, \u2018mar\u2019, \u2026, \u2018nov\u2019, \u2018dec\u2019) 10 \u2014 day_of_week: last contact day of the week (categorical: \u2018mon\u2019,\u2019tue\u2019,\u2019wed\u2019,\u2019thu\u2019,\u2019fri\u2019) 11 \u2014 duration: last contact duration, in seconds (numeric).  Important note: this attribute highly affects the output target (e.g., if duration=0 then y=\u2019no\u2019). Yet, the duration is not known before a call is performed. Also, after the end of the call y is obviously known. Thus, this input should only be included for benchmark purposes and should be discarded if the intention is to have a realistic predictive model.  # other attributes: 12 \u2014 campaign: number of contacts performed during this campaign and for this client (numeric, includes last contact) 13 \u2014 pdays: number of days that passed by after the client was last contacted from a previous campaign (numeric; 999 means client was not previously contacted) 14 \u2014 previous: number of contacts performed before this campaign and for this client (numeric) 15 \u2014 poutcome: outcome of the previous marketing campaign (categorical: \u2018failure\u2019,\u2019nonexistent\u2019,\u2019success\u2019)  # social and economic context attributes 16 \u2014 emp.var.rate: employment variation rate \u2014 quarterly indicator (numeric) 17 \u2014 cons.price.idx: consumer price index \u2014 monthly indicator (numeric) 18 \u2014 cons.conf.idx: consumer confidence index \u2014 monthly indicator (numeric) 19 \u2014 euribor3m: euribor 3 month rate \u2014 daily indicator (numeric) 20 \u2014 nr.employed: number of employees \u2014 quarterly indicator (numeric)  Output variable (desired target): 21 \u2014 y \u2014 has the client subscribed a term deposit? (binary: \u2018yes\u2019, \u2018no\u2019)  PERFORMANCE METRICS:  Different performance metrics are used to evaluate machine learning model. Based on our task we can choose our performance metrics. Since our task is of classification and that too binary class classification, whether client will or will not subscribe for deposits.  PRIMARY PERFORMANCE METRICS  Here we will be using AUC ROC curve.  What is ROC?  ROC also known as Receiver Operating Characteristics, shows the performance of binary class classifiers across the range of all possible thresholds plotting between true positive rate and 1-false positive rate  What is AUC-ROC?  AUC measures the likelihood of two given random points, one from positive and one from negative, the classifier will rank the positive points above negative points. AUC-ROC is popular classification metric that presents the advantage of being independent of false positive or negative points.  Ideal AUC-ROC score is 1. AUC-ROC score for random classifier is 0.5.  SECONDARY PERFORMANCE METRICS  Macro-F1 Score: F1 score is the harmonic mean between Precision and Recall. Macro F1 score is used to know how our model works in overall dataset.  Confusion Matrix: This matrix gives the count of true negative, true positive, false positive and false negative data points.  EDA:  Before going further let\u2019s understand what is EDA?  EDA is a way of interpreting, summarising and visualisation the information from dataset. It could help us to find out the patterns and relationships that may not be understood or visible. It is the one of the important things in data science life cycle.",
+        "stars": 1,
+        "language": null,
+        "topics": [],
+        "files": {},
+        "models_used": [],
+        "techniques": [],
+        "performance_metrics": {}
+      },
+      {
+        "name": "Machine-Learning-Kaggle-Competition",
+        "description": "In-class Kaggle competition for ECE-411: Machine Learning to classify an unknown data set with training examples. ",
+        "stars": 0,
+        "language": "Jupyter Notebook",
+        "topics": [],
+        "files": {
+          "scripts/random_forest.py": {
+            "imports": [
+              "pandas",
+              "sklearn.base.clone",
+              "sklearn.discriminant_analysis.LinearDiscriminantAnalysis",
+              "sklearn.discriminant_analysis.QuadraticDiscriminantAnalysis",
+              "sklearn.ensemble.AdaBoostClassifier",
+              "sklearn.ensemble.ExtraTreesClassifier",
+              "sklearn.ensemble.RandomForestClassifier",
+              "sklearn.ensemble.VotingClassifier",
+              "sklearn.model_selection.train_test_split",
+              "sklearn.model_selection.GridSearchCV",
+              "sklearn.model_selection.RandomizedSearchCV",
+              "sklearn.svm.libsvm_sparse",
+              "sklearn.manifold.TSNE",
+              "sklearn.linear_model.LogisticRegression",
+              "sklearn.naive_bayes.GaussianNB",
+              "sklearn.neural_network.MLPClassifier",
+              "sklearn.neighbors.KNeighborsClassifier",
+              "sklearn.tree.ExtraTreeClassifier",
+              "sklearn.svm.NuSVC",
+              "sklearn.svm.SVC",
+              "sklearn.svm.LinearSVC",
+              "sklearn.utils.shuffle",
+              "scipy.stats.randint",
+              "numpy",
+              "xgboost.XGBClassifier",
+              "sklearn.mixture.GaussianMixture"
+            ],
+            "functions": [
+              "read_data",
+              "split_data_set"
+            ],
+            "classes": [],
+            "models": [
+              "SVC",
+              "LogisticRegression",
+              "XGBClassifier",
+              "VotingClassifier",
+              "RandomForestClassifier"
+            ],
+            "preprocessing_steps": [
+              "train_test_split"
+            ],
+            "feature_engineering": [],
+            "evaluation_metrics": []
+          }
+        },
+        "models_used": [
+          "SVC",
+          "XGBClassifier",
+          "LogisticRegression",
+          "VotingClassifier",
+          "RandomForestClassifier"
+        ],
+        "techniques": [
+          "train_test_split"
+        ],
+        "performance_metrics": {}
+      },
+      {
+        "name": "Code-Quest-2019-Problem-20-Machine-Learning-KNN",
+        "description": "This is the 20th problem in the Lockheed Martin's Code Quest 2019 competition. One must use a KNN algorithm to determine the identity of an unknown bird given the data of known species and of the unknown.",
+        "stars": 0,
+        "language": "Python",
+        "topics": [],
+        "files": {
+          "createTestML.py": {
+            "imports": [
+              "random",
+              "math"
+            ],
+            "functions": [
+              "__init__",
+              "__init__",
+              "__init__",
+              "__init__"
+            ],
+            "classes": [
+              "aBird",
+              "pBird",
+              "cBird",
+              "unknownBird"
+            ],
+            "models": [],
+            "preprocessing_steps": [],
+            "feature_engineering": [],
+            "evaluation_metrics": []
+          },
+          "birdML.py": {
+            "imports": [
+              "math"
+            ],
+            "functions": [],
+            "classes": [],
+            "models": [],
+            "preprocessing_steps": [],
+            "feature_engineering": [],
+            "evaluation_metrics": []
+          }
+        },
+        "models_used": [],
+        "techniques": [],
+        "performance_metrics": {}
+      },
+      {
+        "name": "Machine-Learning-in-Malaysia",
+        "description": "Machine Learning is a wide area of Artificial Intelligence focused in design and development of an algorithm that identifies and learn patterns exist in data provided as input. AI is the catalyst for IR 4.0. This innovation will set an additional or a new approach of governing and managing organizations, particularly companies. It explores the possibility to create intelligent systems that can reason and think like human beings. It is being said to possess similar cognitive abilities as human beings and is now helping the management in making decisions about the allocation and utilization of the resources, solving operation and management problems, as well as advising the strategic development. Billions of people and countless machines will be connected to each other simultaneously and concurrently. Thus, AI will also assist in monitoring and improve those connections and interactions without human intervention to reduce human error and improve the accuracy of decisions made based on strategic analysis of big data captured. It is used as the main driver to obtain competitive advantage and sustainability of companies.  Since the innovation is still new, Malaysian companies might foresee challenges in adopting the innovation into their operations. Sooner or later, companies are forced to accept the new innovation in order to be in parallel with the technological development. An active participation from directors and management in companies can provide a strategic direction and organizational alignment to prevent innovation from failing.  With the introduction of AI and Machine Learning in the TN50, Malaysia has proven that they are ready to move their footstep into more advanced technological development focusing on wider sectors and industries. TN50 is a 30-year plan (2020-2050) that aims to emphasize economic development through advancements in technology, business processes, and innovations, using technology drivers such as robots, machine learning, and AI. With a huge potential benefit and fast evolvement of AI, the primary objectives are to determine the current diffusion stage of AI innovation in Malaysian public listed companies and assess the challenges of AI adoption within the companies.  The idea that computers would one day be able to think like a human had begun the journey of AI and Machine learning over 70 years ago. Early inventions in electronics, engineering, and many other disciplines have influenced the development of AI. The concept of intelligent machines was introduced even before the second half of 20th century and known as \"Ancient History\". Mechanical toys and dolls with the characteristics of mechanic behavior had been created during the time. Scientists define AI as the science of making machines that would require intelligence if done by men. AI and machine learning are concerned with the intelligent category of artifacts.   The concept of machine learning differs according to its level of intensity of intelligence. AI could be stronger or weaker in terms of its intelligence capability. With the adoption of AI innovation, the management and governance of companies will be affected. AI is a new innovation which can help companies to create its value and competitive advantage. The market competition, complexity of production process, product variety, overhead portion, and firm size are factors that can contribute to the adoption of AI innovation. The market competitions, especially the participation of multinational companies in the domestic market of a country, have implication for a local company to design appropriate strategies and control system in the company. The company size sometimes indicates how fast the company adopts the advanced management practice and usually the larger companies the faster they adopt the system. Their arguments are the larger company size lead to an increased complexity of tasks, the companies have greater access to the resource to experiment with administrative innovations.  The innovation in technology and machine has been evolving and become faster with the passage of time. In the wake of AI, regulations related to cybersecurity, emerging technology, and data theft are important to protect the interest of companies as the impact of a breach of data and security is significant and can affect their survival. It will also expose the companies to global challenges which involve societies and humankind. Thus, the legal implication of AI needs to be examined.  Governance on technology and robotics has been established in governing technologies and intelligent machines. This is an example where the legal mechanism is defined in order to mitigate the risk which AI exposes. The development of IR 4.0 exposes to unknown risks in which it is pertinent for the government to examine the impact on the relevant stakeholders in the industry especially the legal risk.  Even though AI can decide or involve in the decision making of companies, the technology is not able to replace the human knowledge and experience in order to provide more valuable decision making to the business. In the long run, the machine needs to be replaced where things change in the future or where it is no longer coping with the complex circumstances. On the other hand, a success of AI system depends on the data volumes and quality of the data input. There may be not sufficient data being provided to support the system. Due to big data supplied to companies nowadays, a huge set of structured and unstructured data need to be filtered and analyzed before they become valuable to the companies.  The ability of computers and system to analyze the data and suggest solutions or strategic changes more quickly than human is beneficial for companies. In addition, the system has the capability to learn, improve and remove a certain degree of potential error or uncertainty from the evolvement of technology. Thus, currently, Malaysian companies are looking at the option of implementing AI system in their management and operations to speed up the decision making process.",
+        "stars": 0,
+        "language": null,
+        "topics": [],
+        "files": {},
+        "models_used": [],
+        "techniques": [],
+        "performance_metrics": {}
+      },
+      {
+        "name": "Improve-a-Fixed-Model-the-Data-Centric-Way-",
+        "description": "'Improve a Fixed Model the Data-Centric Way!' is a Kaggle competition where you have to alter the dataset 'Dissolved oxygen prediction in river water' to get the lowest RMSE score for a random forest model with an unknown test set. This repo shows the basic data-altering procedures that need to be done to optimize the machine learning model. ",
+        "stars": 0,
+        "language": "Python",
+        "topics": [],
+        "files": {
+          "alter_dataset.py": {
+            "imports": [
+              "sklearn.ensemble.RandomForestRegressor",
+              "sklearn.metrics.mean_absolute_error",
+              "numpy",
+              "pandas",
+              "matplotlib.pyplot",
+              "sklearn.inspection.permutation_importance",
+              "sklearn.metrics.mean_squared_error",
+              "sklearn.metrics.make_scorer"
+            ],
+            "functions": [
+              "rmse"
+            ],
+            "classes": [],
+            "models": [
+              "RandomForestRegressor"
+            ],
+            "preprocessing_steps": [],
+            "feature_engineering": [],
+            "evaluation_metrics": [
+              "mean_absolute_error",
+              "mean_squared_error"
+            ]
+          }
+        },
+        "models_used": [
+          "RandomForestRegressor"
+        ],
+        "techniques": [
+          "mean_absolute_error",
+          "mean_squared_error"
+        ],
+        "performance_metrics": {}
+      }
+    ],
+    "common_patterns": {
+      "most_common_models": [
+        [
+          "SVC",
+          1
+        ],
+        [
+          "XGBClassifier",
+          1
+        ],
+        [
+          "LogisticRegression",
+          1
+        ],
+        [
+          "VotingClassifier",
+          1
+        ],
+        [
+          "RandomForestClassifier",
+          1
+        ],
+        [
+          "RandomForestRegressor",
+          1
+        ]
+      ],
+      "most_common_techniques": [
+        [
+          "train_test_split",
+          1
+        ],
+        [
+          "mean_absolute_error",
+          1
+        ],
+        [
+          "mean_squared_error",
+          1
+        ]
+      ],
+      "most_common_imports": [
+        [
+          "pandas",
+          2
+        ],
+        [
+          "numpy",
+          2
+        ],
+        [
+          "math",
+          2
+        ],
+        [
+          "sklearn.base.clone",
+          1
+        ],
+        [
+          "sklearn.discriminant_analysis.LinearDiscriminantAnalysis",
+          1
+        ],
+        [
+          "sklearn.discriminant_analysis.QuadraticDiscriminantAnalysis",
+          1
+        ],
+        [
+          "sklearn.ensemble.AdaBoostClassifier",
+          1
+        ],
+        [
+          "sklearn.ensemble.ExtraTreesClassifier",
+          1
+        ],
+        [
+          "sklearn.ensemble.RandomForestClassifier",
+          1
+        ],
+        [
+          "sklearn.ensemble.VotingClassifier",
+          1
+        ],
+        [
+          "sklearn.model_selection.train_test_split",
+          1
+        ],
+        [
+          "sklearn.model_selection.GridSearchCV",
+          1
+        ],
+        [
+          "sklearn.model_selection.RandomizedSearchCV",
+          1
+        ],
+        [
+          "sklearn.svm.libsvm_sparse",
+          1
+        ],
+        [
+          "sklearn.manifold.TSNE",
+          1
+        ],
+        [
+          "sklearn.linear_model.LogisticRegression",
+          1
+        ],
+        [
+          "sklearn.naive_bayes.GaussianNB",
+          1
+        ],
+        [
+          "sklearn.neural_network.MLPClassifier",
+          1
+        ],
+        [
+          "sklearn.neighbors.KNeighborsClassifier",
+          1
+        ],
+        [
+          "sklearn.tree.ExtraTreeClassifier",
+          1
+        ]
+      ]
+    },
+    "best_practices": [],
+    "code_snippets": {},
+    "model_architectures": [],
+    "feature_engineering_techniques": []
+  },
+  "optimized_config": {
+    "problem_type": "auto",
+    "target_column": "target",
+    "metric": "auto",
+    "cv_folds": 5,
+    "random_state": 42,
+    "max_trials": 100,
+    "models": {
+      "lgb": false,
+      "xgb": true,
+      "catboost": false,
+      "rf": true,
+      "lr": true,
+      "svm": false
+    },
+    "preprocessing": {
+      "handle_missing": false,
+      "encode_categorical": false,
+      "scale_features": false,
+      "remove_outliers": false
+    },
+    "ensemble_methods": [
+      "voting",
+      "stacking"
+    ],
+    "feature_engineering": false,
+    "feature_selection": false
+  },
+  "code_templates": {
+    "main_training": "\n# Auto-generated training script for Unknown Competition\n# Optimized based on 5 analyzed repositories\n\nfrom ai_competition_toolkit import CompetitionFramework\nimport pandas as pd\n\ndef main():\n    # Load data\n    train_data = pd.read_csv('train.csv')\n    test_data = pd.read_csv('test.csv')\n    \n    # Initialize framework with optimized configuration\n    framework = CompetitionFramework()\n    \n    # Apply competition-specific optimizations\n    framework.config.set('problem_type', 'auto')\n    framework.config.set('target_column', 'target')\n    framework.config.set('metric', 'auto')\n    \n    # Prepare data\n    X_train, y_train, X_test = framework.prepare_data(train_data, 'target', test_data)\n    \n    # Train models\n    framework.train_models(X_train, y_train)\n    \n    # Create ensembles\n    framework.create_ensembles(X_train, y_train)\n    \n    # Generate submission\n    submission_format = pd.read_csv('sample_submission.csv')\n    framework.generate_submission(X_test, submission_format, 'submission.csv')\n    \n    print(\"Training completed! Submission file generated.\")\n\nif __name__ == \"__main__\":\n    main()\n"
+  },
+  "recommendations": [
+    "Most successful models in similar competitions: SVC, XGBClassifier, LogisticRegression"
+  ]
+}

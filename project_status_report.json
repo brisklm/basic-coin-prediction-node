@@ -1,0 +1,2011 @@
+{
+  "analysis_timestamp": "2025-08-17T16:34:12.159297",
+  "project_structure": {
+    "root_directory": "/Users/aquariusluo/software/cursor/forge",
+    "total_files": 14,
+    "total_lines": 9049,
+    "total_size_bytes": 327315,
+    "file_types": {
+      "python": 10,
+      "docs": 2,
+      "config": 2
+    },
+    "directory_structure": {},
+    "main_modules": [
+      "test_toolkit.py",
+      "autonomous_example.py",
+      "competition_analyzer.py",
+      "ai_competition_toolkit.py",
+      "example_usage.py",
+      "enhanced_competition_toolkit.py",
+      "cyclical_mcp_system.py",
+      "ultimate_competition_example.py",
+      "project_status_analyzer.py",
+      "cyclical_optimization_example.py"
+    ],
+    "entry_points": [],
+    "configuration_files": [
+      "competition_config.yaml",
+      "project_status_report.json"
+    ]
+  },
+  "file_analyses": [
+    {
+      "path": "test_toolkit.py",
+      "type": "python",
+      "size_bytes": 4562,
+      "lines": 155,
+      "imports": [
+        "pandas",
+        "numpy",
+        "from sklearn.datasets",
+        "make_classification",
+        "make_regression",
+        "from sklearn.model_selection",
+        "train_test_split",
+        "from ai_competition_toolkit",
+        "CompetitionFramework",
+        "quick_train",
+        "create_default_config"
+      ],
+      "functions": [
+        "test_basic_functionality",
+        "test_config_creation",
+        "test_data_preprocessing",
+        "test_model_training",
+        "run_all_tests"
+      ],
+      "classes": [],
+      "dependencies": [
+        "numpy",
+        "pandas",
+        "sklearn",
+        "ai_competition_toolkit"
+      ],
+      "complexity_score": 3.6,
+      "last_modified": "2025-08-17T15:57:15.732510",
+      "errors": []
+    },
+    {
+      "path": "autonomous_example.py",
+      "type": "python",
+      "size_bytes": 12224,
+      "lines": 362,
+      "imports": [
+        "pandas",
+        "numpy",
+        "from pathlib",
+        "Path",
+        "os",
+        "from enhanced_competition_toolkit",
+        "EnhancedCompetitionFramework",
+        "autonomous_competition_solution",
+        "quick_competition_solution",
+        "from competition_analyzer",
+        "GitHubAnalyzer",
+        "from competition_analyzer",
+        "MCPOptimizer",
+        "CompetitionInfo",
+        "traceback"
+      ],
+      "functions": [
+        "demo_autonomous_analysis",
+        "demo_github_learning",
+        "demo_mcp_optimization",
+        "demo_complete_autonomous_solution",
+        "demo_quick_solution",
+        "run_all_demos"
+      ],
+      "classes": [],
+      "dependencies": [
+        "os",
+        "traceback",
+        "pathlib",
+        "enhanced_competition_toolkit",
+        "competition_analyzer",
+        "numpy",
+        "pandas"
+      ],
+      "complexity_score": 10.0,
+      "last_modified": "2025-08-17T16:08:54.268143",
+      "errors": []
+    },
+    {
+      "path": "requirements.txt",
+      "type": "docs",
+      "size_bytes": 213,
+      "lines": 14,
+      "imports": [],
+      "functions": [],
+      "classes": [],
+      "dependencies": [],
+      "complexity_score": 0.0,
+      "last_modified": "2025-08-17T16:33:23.188132",
+      "errors": []
+    },
+    {
+      "path": "competition_analyzer.py",
+      "type": "python",
+      "size_bytes": 38892,
+      "lines": 993,
+      "imports": [
+        "requests",
+        "re",
+        "json",
+        "ast",
+        "os",
+        "subprocess",
+        "from typing",
+        "Dict",
+        "List",
+        "Any",
+        "Optional",
+        "Tuple",
+        "from urllib.parse",
+        "urljoin",
+        "urlparse",
+        "from bs4",
+        "BeautifulSoup",
+        "from github",
+        "Github",
+        "git",
+        "yaml",
+        "from pathlib",
+        "Path",
+        "pandas",
+        "numpy",
+        "from dataclasses",
+        "dataclass",
+        "logging",
+        "from collections",
+        "Counter",
+        "shutil",
+        "anthropic",
+        "openai",
+        "shutil"
+      ],
+      "functions": [
+        "analyze_competition_automatically",
+        "__init__",
+        "scrape_kaggle_competition",
+        "scrape_drivendata_competition",
+        "_extract_kaggle_title",
+        "_extract_kaggle_description",
+        "_extract_kaggle_metric",
+        "_extract_kaggle_rules",
+        "_extract_kaggle_data_description",
+        "_extract_kaggle_submission_format",
+        "_extract_kaggle_deadline",
+        "_extract_target_column",
+        "_determine_problem_type",
+        "_create_fallback_info",
+        "__init__",
+        "analyze_competition_repos",
+        "_analyze_single_repo",
+        "_analyze_code_files",
+        "_analyze_file_content",
+        "_extract_model_patterns",
+        "_extract_preprocessing_patterns",
+        "_extract_feature_engineering_patterns",
+        "_extract_metric_patterns",
+        "_extract_models_used",
+        "_extract_techniques",
+        "_extract_common_patterns",
+        "__init__",
+        "optimize_competition_code",
+        "_create_optimization_prompt",
+        "_call_mcp_service",
+        "_call_anthropic_api",
+        "_call_openai_api",
+        "_rule_based_optimization",
+        "_analyze_improvements",
+        "__init__",
+        "analyze_competition",
+        "_generate_optimized_config",
+        "_create_code_templates",
+        "_generate_recommendations"
+      ],
+      "classes": [
+        "CompetitionInfo",
+        "CompetitionScraper",
+        "GitHubAnalyzer",
+        "MCPOptimizer",
+        "CompetitionRequirementsAnalyzer"
+      ],
+      "dependencies": [
+        "git",
+        "collections",
+        "pandas",
+        "json",
+        "pathlib",
+        "bs4",
+        "ast",
+        "github",
+        "anthropic",
+        "numpy",
+        "yaml",
+        "openai",
+        "shutil",
+        "urllib",
+        "requests",
+        "os",
+        "subprocess",
+        "dataclasses",
+        "typing",
+        "logging",
+        "re"
+      ],
+      "complexity_score": 10.0,
+      "last_modified": "2025-08-17T16:06:04.311038",
+      "errors": []
+    },
+    {
+      "path": "ai_competition_toolkit.py",
+      "type": "python",
+      "size_bytes": 32462,
+      "lines": 775,
+      "imports": [
+        "numpy",
+        "pandas",
+        "from sklearn.model_selection",
+        "StratifiedKFold",
+        "KFold",
+        "cross_val_score",
+        "from sklearn.metrics",
+        "accuracy_score",
+        "roc_auc_score",
+        "mean_squared_error",
+        "mean_absolute_error",
+        "log_loss",
+        "f1_score",
+        "from sklearn.preprocessing",
+        "StandardScaler",
+        "RobustScaler",
+        "MinMaxScaler",
+        "from sklearn.feature_selection",
+        "SelectKBest",
+        "f_classif",
+        "f_regression",
+        "mutual_info_classif",
+        "from sklearn.ensemble",
+        "RandomForestClassifier",
+        "RandomForestRegressor",
+        "from sklearn.linear_model",
+        "LogisticRegression",
+        "LinearRegression",
+        "Ridge",
+        "Lasso",
+        "from sklearn.svm",
+        "SVC",
+        "SVR",
+        "xgboost",
+        "lightgbm",
+        "catboost",
+        "optuna",
+        "from typing",
+        "Dict",
+        "List",
+        "Any",
+        "Optional",
+        "Tuple",
+        "Union",
+        "yaml",
+        "joblib",
+        "warnings",
+        "from sklearn.ensemble",
+        "VotingClassifier",
+        "VotingRegressor",
+        "from sklearn.ensemble",
+        "StackingClassifier",
+        "StackingRegressor",
+        "from sklearn.linear_model",
+        "LogisticRegression",
+        "Ridge"
+      ],
+      "functions": [
+        "quick_train",
+        "create_default_config",
+        "__init__",
+        "load_config",
+        "save_config",
+        "get",
+        "set",
+        "__init__",
+        "fit_transform",
+        "transform",
+        "_handle_missing_values",
+        "_encode_categorical",
+        "_scale_features",
+        "_remove_outliers",
+        "__init__",
+        "engineer_features",
+        "select_features",
+        "__init__",
+        "optimize_model",
+        "_get_trial_params",
+        "_create_model",
+        "__init__",
+        "add_model",
+        "create_voting_ensemble",
+        "create_stacking_ensemble",
+        "create_weighted_average",
+        "__init__",
+        "detect_problem_type",
+        "get_metric",
+        "prepare_data",
+        "train_models",
+        "create_ensembles",
+        "evaluate_models",
+        "_calculate_score",
+        "predict",
+        "save_model",
+        "load_model",
+        "generate_submission",
+        "objective"
+      ],
+      "classes": [
+        "CompetitionConfig",
+        "DataPreprocessor",
+        "FeatureEngineer",
+        "ModelOptimizer",
+        "EnsembleManager",
+        "CompetitionFramework"
+      ],
+      "dependencies": [
+        "joblib",
+        "warnings",
+        "lightgbm",
+        "optuna",
+        "xgboost",
+        "typing",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "catboost",
+        "yaml"
+      ],
+      "complexity_score": 10.0,
+      "last_modified": "2025-08-17T15:55:00.159384",
+      "errors": []
+    },
+    {
+      "path": "competition_config.yaml",
+      "type": "config",
+      "size_bytes": 398,
+      "lines": 24,
+      "imports": [],
+      "functions": [],
+      "classes": [],
+      "dependencies": [],
+      "complexity_score": 0.0,
+      "last_modified": "2025-08-17T15:57:18.763073",
+      "errors": []
+    },
+    {
+      "path": "example_usage.py",
+      "type": "python",
+      "size_bytes": 9938,
+      "lines": 307,
+      "imports": [
+        "pandas",
+        "numpy",
+        "from sklearn.datasets",
+        "make_classification",
+        "make_regression",
+        "from sklearn.model_selection",
+        "train_test_split",
+        "from ai_competition_toolkit",
+        "CompetitionFramework",
+        "quick_train",
+        "create_default_config",
+        "traceback"
+      ],
+      "functions": [
+        "example_1_classification",
+        "example_2_regression",
+        "example_3_custom_config",
+        "example_4_competition_simulation",
+        "example_5_model_comparison"
+      ],
+      "classes": [],
+      "dependencies": [
+        "ai_competition_toolkit",
+        "traceback",
+        "numpy",
+        "pandas",
+        "sklearn"
+      ],
+      "complexity_score": 10.0,
+      "last_modified": "2025-08-17T15:56:05.169685",
+      "errors": []
+    },
+    {
+      "path": "README.md",
+      "type": "docs",
+      "size_bytes": 19229,
+      "lines": 508,
+      "imports": [],
+      "functions": [],
+      "classes": [],
+      "dependencies": [],
+      "complexity_score": 0.0,
+      "last_modified": "2025-08-17T16:26:16.934586",
+      "errors": []
+    },
+    {
+      "path": "project_status_report.json",
+      "type": "config",
+      "size_bytes": 54935,
+      "lines": 2104,
+      "imports": [],
+      "functions": [],
+      "classes": [],
+      "dependencies": [],
+      "complexity_score": 0.0,
+      "last_modified": "2025-08-17T16:32:57.074294",
+      "errors": []
+    },
+    {
+      "path": "enhanced_competition_toolkit.py",
+      "type": "python",
+      "size_bytes": 24037,
+      "lines": 576,
+      "imports": [
+        "os",
+        "sys",
+        "asyncio",
+        "from pathlib",
+        "Path",
+        "from typing",
+        "Optional",
+        "Dict",
+        "Any",
+        "List",
+        "yaml",
+        "json",
+        "logging",
+        "from ai_competition_toolkit",
+        "CompetitionFramework",
+        "quick_train",
+        "from competition_analyzer",
+        "CompetitionRequirementsAnalyzer",
+        "analyze_competition_automatically",
+        "CompetitionInfo",
+        "from cyclical_mcp_system",
+        "CyclicalMCPOrchestrator",
+        "CyclicalConfig",
+        "run_cyclical_optimization",
+        "pandas",
+        "pandas",
+        "pandas",
+        "pandas"
+      ],
+      "functions": [
+        "autonomous_competition_solution",
+        "quick_competition_solution",
+        "__init__",
+        "_analyze_competition",
+        "get_competition_insights",
+        "_extract_best_practices",
+        "auto_train_with_optimization",
+        "_apply_competition_optimizations",
+        "generate_competition_submission",
+        "_create_competition_info_for_cyclical",
+        "get_cyclical_optimization_results"
+      ],
+      "classes": [
+        "EnhancedCompetitionFramework"
+      ],
+      "dependencies": [
+        "asyncio",
+        "ai_competition_toolkit",
+        "os",
+        "pathlib",
+        "typing",
+        "competition_analyzer",
+        "logging",
+        "sys",
+        "yaml",
+        "cyclical_mcp_system",
+        "pandas",
+        "json"
+      ],
+      "complexity_score": 10.0,
+      "last_modified": "2025-08-17T16:23:21.805638",
+      "errors": []
+    },
+    {
+      "path": "cyclical_mcp_system.py",
+      "type": "python",
+      "size_bytes": 48585,
+      "lines": 1155,
+      "imports": [
+        "json",
+        "time",
+        "logging",
+        "from typing",
+        "Dict",
+        "List",
+        "Any",
+        "Optional",
+        "Tuple",
+        "Callable",
+        "from dataclasses",
+        "dataclass",
+        "asdict",
+        "from pathlib",
+        "Path",
+        "pandas",
+        "numpy",
+        "from abc",
+        "ABC",
+        "abstractmethod",
+        "asyncio",
+        "threading",
+        "from concurrent.futures",
+        "ThreadPoolExecutor",
+        "yaml",
+        "from ai_competition_toolkit",
+        "CompetitionFramework",
+        "from competition_analyzer",
+        "CompetitionInfo",
+        "MCPOptimizer",
+        "from enhanced_competition_toolkit",
+        "EnhancedCompetitionFramework",
+        "asyncio",
+        "from sklearn.model_selection",
+        "cross_val_score",
+        "anthropic",
+        "openai",
+        "anthropic",
+        "openai",
+        "from sklearn.model_selection",
+        "train_test_split",
+        "os"
+      ],
+      "functions": [
+        "__post_init__",
+        "__init__",
+        "log_call",
+        "__init__",
+        "_create_optimization_prompt",
+        "_format_iteration_history",
+        "_rule_based_optimization",
+        "_parse_optimization_response",
+        "_calculate_confidence",
+        "_estimate_improvement",
+        "__init__",
+        "_create_evaluation_prompt",
+        "_format_optimization_history",
+        "_rule_based_evaluation",
+        "_parse_evaluation_response",
+        "_generate_recommendations",
+        "_assess_convergence",
+        "_calculate_overall_score",
+        "__init__",
+        "_extract_model_details",
+        "_extract_competition_requirements",
+        "_calculate_improvement_score",
+        "_calculate_convergence_metrics",
+        "_check_convergence",
+        "_calculate_model_diversity",
+        "_compile_final_results",
+        "save_optimization_results"
+      ],
+      "classes": [
+        "OptimizationIteration",
+        "CyclicalConfig",
+        "MCPServer",
+        "MCPOptimizerServer",
+        "MCPEvaluatorServer",
+        "CyclicalMCPOrchestrator"
+      ],
+      "dependencies": [
+        "ai_competition_toolkit",
+        "enhanced_competition_toolkit",
+        "competition_analyzer",
+        "pandas",
+        "json",
+        "asyncio",
+        "pathlib",
+        "anthropic",
+        "numpy",
+        "openai",
+        "yaml",
+        "concurrent",
+        "time",
+        "abc",
+        "sklearn",
+        "threading",
+        "os",
+        "dataclasses",
+        "typing",
+        "logging"
+      ],
+      "complexity_score": 10.0,
+      "last_modified": "2025-08-17T16:19:14.596850",
+      "errors": []
+    },
+    {
+      "path": "ultimate_competition_example.py",
+      "type": "python",
+      "size_bytes": 20431,
+      "lines": 505,
+      "imports": [
+        "asyncio",
+        "pandas",
+        "numpy",
+        "from pathlib",
+        "Path",
+        "json",
+        "time",
+        "logging",
+        "from enhanced_competition_toolkit",
+        "EnhancedCompetitionFramework",
+        "autonomous_competition_solution",
+        "quick_competition_solution",
+        "from cyclical_mcp_system",
+        "CyclicalConfig",
+        "run_cyclical_optimization",
+        "os",
+        "os",
+        "traceback",
+        "traceback"
+      ],
+      "functions": [],
+      "classes": [],
+      "dependencies": [
+        "asyncio",
+        "os",
+        "time",
+        "traceback",
+        "pathlib",
+        "enhanced_competition_toolkit",
+        "logging",
+        "cyclical_mcp_system",
+        "numpy",
+        "pandas",
+        "json"
+      ],
+      "complexity_score": 2.1,
+      "last_modified": "2025-08-17T16:25:12.837537",
+      "errors": []
+    },
+    {
+      "path": "project_status_analyzer.py",
+      "type": "python",
+      "size_bytes": 38786,
+      "lines": 978,
+      "imports": [
+        "os",
+        "ast",
+        "sys",
+        "json",
+        "yaml",
+        "subprocess",
+        "importlib",
+        "inspect",
+        "from pathlib",
+        "Path",
+        "from typing",
+        "Dict",
+        "List",
+        "Any",
+        "Optional",
+        "Tuple",
+        "Set",
+        "from dataclasses",
+        "dataclass",
+        "asdict",
+        "pandas",
+        "logging",
+        "from collections",
+        "defaultdict",
+        "Counter",
+        "re",
+        "toml"
+      ],
+      "functions": [
+        "analyze_project_status",
+        "generate_status_report",
+        "__init__",
+        "analyze_project",
+        "_analyze_project_structure",
+        "_analyze_files",
+        "_analyze_single_file",
+        "_analyze_python_ast",
+        "_analyze_modules",
+        "_analyze_python_module",
+        "_analyze_dependencies",
+        "_parse_requirements_txt",
+        "_parse_pyproject_toml",
+        "_get_installed_packages",
+        "_discover_integration_points",
+        "_assess_integration_risk",
+        "_assess_project_health",
+        "_generate_readiness_assessment",
+        "_generate_next_steps",
+        "save_analysis",
+        "generate_report"
+      ],
+      "classes": [
+        "FileAnalysis",
+        "ModuleAnalysis",
+        "ProjectStructure",
+        "DependencyAnalysis",
+        "IntegrationPoint",
+        "ProjectHealth",
+        "ProjectStatus",
+        "ProjectStatusAnalyzer"
+      ],
+      "dependencies": [
+        "os",
+        "subprocess",
+        "pathlib",
+        "dataclasses",
+        "collections",
+        "importlib",
+        "typing",
+        "ast",
+        "logging",
+        "sys",
+        "inspect",
+        "yaml",
+        "toml",
+        "pandas",
+        "json",
+        "re"
+      ],
+      "complexity_score": 10.0,
+      "last_modified": "2025-08-17T16:31:46.591481",
+      "errors": []
+    },
+    {
+      "path": "cyclical_optimization_example.py",
+      "type": "python",
+      "size_bytes": 22623,
+      "lines": 593,
+      "imports": [
+        "asyncio",
+        "pandas",
+        "numpy",
+        "from pathlib",
+        "Path",
+        "json",
+        "logging",
+        "from cyclical_mcp_system",
+        "CyclicalMCPOrchestrator",
+        "CyclicalConfig",
+        "run_cyclical_optimization",
+        "os",
+        "os",
+        "os",
+        "os",
+        "traceback",
+        "traceback",
+        "traceback"
+      ],
+      "functions": [],
+      "classes": [],
+      "dependencies": [
+        "asyncio",
+        "os",
+        "traceback",
+        "pathlib",
+        "logging",
+        "cyclical_mcp_system",
+        "numpy",
+        "pandas",
+        "json"
+      ],
+      "complexity_score": 2.4,
+      "last_modified": "2025-08-17T16:21:28.493972",
+      "errors": []
+    }
+  ],
+  "module_analyses": [
+    {
+      "name": "test_toolkit",
+      "file_path": "test_toolkit.py",
+      "public_api": [
+        "test_basic_functionality",
+        "test_config_creation",
+        "test_data_preprocessing",
+        "test_model_training",
+        "run_all_tests"
+      ],
+      "internal_functions": [],
+      "dependencies": [
+        "numpy",
+        "pandas",
+        "sklearn",
+        "ai_competition_toolkit"
+      ],
+      "exports": [],
+      "docstring": "Test script for AI Competition Toolkit",
+      "test_coverage": null,
+      "integration_points": []
+    },
+    {
+      "name": "autonomous_example",
+      "file_path": "autonomous_example.py",
+      "public_api": [
+        "demo_autonomous_analysis",
+        "demo_github_learning",
+        "demo_mcp_optimization",
+        "demo_complete_autonomous_solution",
+        "demo_quick_solution",
+        "run_all_demos"
+      ],
+      "internal_functions": [],
+      "dependencies": [
+        "os",
+        "traceback",
+        "pathlib",
+        "enhanced_competition_toolkit",
+        "competition_analyzer",
+        "numpy",
+        "pandas"
+      ],
+      "exports": [],
+      "docstring": "Autonomous AI Competition Toolkit - Example Usage\n================================================\n\nDemonstrates the enhanced toolkit with automatic competition analysis,\nGitHub repository learning, and MCP-powered optimization.",
+      "test_coverage": null,
+      "integration_points": []
+    },
+    {
+      "name": "competition_analyzer",
+      "file_path": "competition_analyzer.py",
+      "public_api": [
+        "CompetitionInfo",
+        "CompetitionScraper",
+        "GitHubAnalyzer",
+        "MCPOptimizer",
+        "CompetitionRequirementsAnalyzer",
+        "analyze_competition_automatically",
+        "scrape_kaggle_competition",
+        "scrape_drivendata_competition",
+        "analyze_competition_repos",
+        "optimize_competition_code",
+        "analyze_competition"
+      ],
+      "internal_functions": [
+        "__init__",
+        "_extract_kaggle_title",
+        "_extract_kaggle_description",
+        "_extract_kaggle_metric",
+        "_extract_kaggle_rules",
+        "_extract_kaggle_data_description",
+        "_extract_kaggle_submission_format",
+        "_extract_kaggle_deadline",
+        "_extract_target_column",
+        "_determine_problem_type",
+        "_create_fallback_info",
+        "__init__",
+        "_analyze_single_repo",
+        "_analyze_code_files",
+        "_analyze_file_content",
+        "_extract_model_patterns",
+        "_extract_preprocessing_patterns",
+        "_extract_feature_engineering_patterns",
+        "_extract_metric_patterns",
+        "_extract_models_used",
+        "_extract_techniques",
+        "_extract_common_patterns",
+        "__init__",
+        "_create_optimization_prompt",
+        "_call_mcp_service",
+        "_call_anthropic_api",
+        "_call_openai_api",
+        "_rule_based_optimization",
+        "_analyze_improvements",
+        "__init__",
+        "_generate_optimized_config",
+        "_create_code_templates",
+        "_generate_recommendations"
+      ],
+      "dependencies": [
+        "git",
+        "collections",
+        "pandas",
+        "json",
+        "pathlib",
+        "bs4",
+        "ast",
+        "github",
+        "anthropic",
+        "numpy",
+        "yaml",
+        "openai",
+        "shutil",
+        "urllib",
+        "requests",
+        "os",
+        "subprocess",
+        "dataclasses",
+        "typing",
+        "logging",
+        "re"
+      ],
+      "exports": [],
+      "docstring": "Competition Analyzer - Automated competition requirement analysis and code optimization",
+      "test_coverage": null,
+      "integration_points": [
+        "re"
+      ]
+    },
+    {
+      "name": "ai_competition_toolkit",
+      "file_path": "ai_competition_toolkit.py",
+      "public_api": [
+        "CompetitionConfig",
+        "DataPreprocessor",
+        "FeatureEngineer",
+        "ModelOptimizer",
+        "EnsembleManager",
+        "CompetitionFramework",
+        "quick_train",
+        "create_default_config",
+        "load_config",
+        "save_config",
+        "get",
+        "set",
+        "fit_transform",
+        "transform",
+        "engineer_features",
+        "select_features",
+        "optimize_model",
+        "add_model",
+        "create_voting_ensemble",
+        "create_stacking_ensemble",
+        "create_weighted_average",
+        "detect_problem_type",
+        "get_metric",
+        "prepare_data",
+        "train_models",
+        "create_ensembles",
+        "evaluate_models",
+        "predict",
+        "save_model",
+        "load_model",
+        "generate_submission",
+        "objective"
+      ],
+      "internal_functions": [
+        "__init__",
+        "__init__",
+        "_handle_missing_values",
+        "_encode_categorical",
+        "_scale_features",
+        "_remove_outliers",
+        "__init__",
+        "__init__",
+        "_get_trial_params",
+        "_create_model",
+        "__init__",
+        "__init__",
+        "_calculate_score"
+      ],
+      "dependencies": [
+        "joblib",
+        "warnings",
+        "lightgbm",
+        "optuna",
+        "xgboost",
+        "typing",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "catboost",
+        "yaml"
+      ],
+      "exports": [],
+      "docstring": "AI Competition Toolkit - A general-purpose framework for machine learning competitions",
+      "test_coverage": null,
+      "integration_points": []
+    },
+    {
+      "name": "example_usage",
+      "file_path": "example_usage.py",
+      "public_api": [
+        "example_1_classification",
+        "example_2_regression",
+        "example_3_custom_config",
+        "example_4_competition_simulation",
+        "example_5_model_comparison"
+      ],
+      "internal_functions": [],
+      "dependencies": [
+        "ai_competition_toolkit",
+        "traceback",
+        "numpy",
+        "pandas",
+        "sklearn"
+      ],
+      "exports": [],
+      "docstring": "AI Competition Toolkit - Example Usage\n=====================================\n\nThis file demonstrates how to use the AI Competition Toolkit for various scenarios.",
+      "test_coverage": null,
+      "integration_points": []
+    },
+    {
+      "name": "enhanced_competition_toolkit",
+      "file_path": "enhanced_competition_toolkit.py",
+      "public_api": [
+        "EnhancedCompetitionFramework",
+        "autonomous_competition_solution",
+        "quick_competition_solution",
+        "get_competition_insights",
+        "auto_train_with_optimization",
+        "generate_competition_submission",
+        "get_cyclical_optimization_results"
+      ],
+      "internal_functions": [
+        "__init__",
+        "_analyze_competition",
+        "_extract_best_practices",
+        "_apply_competition_optimizations",
+        "_create_competition_info_for_cyclical"
+      ],
+      "dependencies": [
+        "asyncio",
+        "ai_competition_toolkit",
+        "os",
+        "pathlib",
+        "typing",
+        "competition_analyzer",
+        "logging",
+        "sys",
+        "yaml",
+        "cyclical_mcp_system",
+        "pandas",
+        "json"
+      ],
+      "exports": [],
+      "docstring": "Enhanced AI Competition Toolkit with Autonomous Analysis and Optimization\n=========================================================================\n\nThis enhanced version automatically analyzes competition requirements,\nstudies reference repositories, and uses MCP for autonomous optimization.",
+      "test_coverage": null,
+      "integration_points": []
+    },
+    {
+      "name": "cyclical_mcp_system",
+      "file_path": "cyclical_mcp_system.py",
+      "public_api": [
+        "OptimizationIteration",
+        "CyclicalConfig",
+        "MCPServer",
+        "MCPOptimizerServer",
+        "MCPEvaluatorServer",
+        "CyclicalMCPOrchestrator",
+        "log_call",
+        "save_optimization_results"
+      ],
+      "internal_functions": [
+        "__post_init__",
+        "__init__",
+        "__init__",
+        "_create_optimization_prompt",
+        "_format_iteration_history",
+        "_rule_based_optimization",
+        "_parse_optimization_response",
+        "_calculate_confidence",
+        "_estimate_improvement",
+        "__init__",
+        "_create_evaluation_prompt",
+        "_format_optimization_history",
+        "_rule_based_evaluation",
+        "_parse_evaluation_response",
+        "_generate_recommendations",
+        "_assess_convergence",
+        "_calculate_overall_score",
+        "__init__",
+        "_extract_model_details",
+        "_extract_competition_requirements",
+        "_calculate_improvement_score",
+        "_calculate_convergence_metrics",
+        "_check_convergence",
+        "_calculate_model_diversity",
+        "_compile_final_results"
+      ],
+      "dependencies": [
+        "ai_competition_toolkit",
+        "enhanced_competition_toolkit",
+        "competition_analyzer",
+        "pandas",
+        "json",
+        "asyncio",
+        "pathlib",
+        "anthropic",
+        "numpy",
+        "openai",
+        "yaml",
+        "concurrent",
+        "time",
+        "abc",
+        "sklearn",
+        "threading",
+        "os",
+        "dataclasses",
+        "typing",
+        "logging"
+      ],
+      "exports": [],
+      "docstring": "Cyclical MCP System - Iterative optimization using dual MCP servers\n==================================================================\n\nThis system implements a cyclical optimization loop using two MCP servers:\n1. MCP Optimizer: Generates improved code/strategies\n2. MCP Evaluator: Evaluates performance and suggests improvements\n\nThe cycle continues until convergence criteria are met.",
+      "test_coverage": null,
+      "integration_points": []
+    },
+    {
+      "name": "ultimate_competition_example",
+      "file_path": "ultimate_competition_example.py",
+      "public_api": [],
+      "internal_functions": [],
+      "dependencies": [
+        "asyncio",
+        "os",
+        "time",
+        "traceback",
+        "pathlib",
+        "enhanced_competition_toolkit",
+        "logging",
+        "cyclical_mcp_system",
+        "numpy",
+        "pandas",
+        "json"
+      ],
+      "exports": [],
+      "docstring": "Ultimate Competition Example - Cyclical MCP Optimization\n=======================================================\n\nDemonstrates the complete AI Competition Toolkit with:\n1. Autonomous competition analysis\n2. GitHub repository learning\n3. Cyclical MCP optimization with dual servers\n4. Customizable convergence criteria\n5. Production-ready deployment",
+      "test_coverage": null,
+      "integration_points": []
+    },
+    {
+      "name": "project_status_analyzer",
+      "file_path": "project_status_analyzer.py",
+      "public_api": [
+        "FileAnalysis",
+        "ModuleAnalysis",
+        "ProjectStructure",
+        "DependencyAnalysis",
+        "IntegrationPoint",
+        "ProjectHealth",
+        "ProjectStatus",
+        "ProjectStatusAnalyzer",
+        "analyze_project_status",
+        "generate_status_report",
+        "analyze_project",
+        "save_analysis",
+        "generate_report"
+      ],
+      "internal_functions": [
+        "__init__",
+        "_analyze_project_structure",
+        "_analyze_files",
+        "_analyze_single_file",
+        "_analyze_python_ast",
+        "_analyze_modules",
+        "_analyze_python_module",
+        "_analyze_dependencies",
+        "_parse_requirements_txt",
+        "_parse_pyproject_toml",
+        "_get_installed_packages",
+        "_discover_integration_points",
+        "_assess_integration_risk",
+        "_assess_project_health",
+        "_generate_readiness_assessment",
+        "_generate_next_steps"
+      ],
+      "dependencies": [
+        "os",
+        "subprocess",
+        "pathlib",
+        "dataclasses",
+        "collections",
+        "importlib",
+        "typing",
+        "ast",
+        "logging",
+        "sys",
+        "inspect",
+        "yaml",
+        "toml",
+        "pandas",
+        "json",
+        "re"
+      ],
+      "exports": [],
+      "docstring": "Project Status Analyzer - Comprehensive Project Understanding System\n===================================================================\n\nThis module provides complete project status analysis including:\n- Codebase structure and architecture mapping\n- Dependency analysis and compatibility checking  \n- Integration point discovery\n- Health assessment and readiness evaluation\n- Pre-condition validation for cyclical MCP implementation",
+      "test_coverage": null,
+      "integration_points": [
+        "re"
+      ]
+    },
+    {
+      "name": "cyclical_optimization_example",
+      "file_path": "cyclical_optimization_example.py",
+      "public_api": [],
+      "internal_functions": [],
+      "dependencies": [
+        "asyncio",
+        "os",
+        "traceback",
+        "pathlib",
+        "logging",
+        "cyclical_mcp_system",
+        "numpy",
+        "pandas",
+        "json"
+      ],
+      "exports": [],
+      "docstring": "Cyclical MCP Optimization Example\n================================\n\nDemonstrates the dual MCP server cyclical optimization system with\ncustomizable convergence criteria and thresholds.",
+      "test_coverage": null,
+      "integration_points": []
+    }
+  ],
+  "dependency_analysis": {
+    "direct_dependencies": {
+      "numpy": "1.21.0",
+      "pandas": "1.3.0",
+      "scikit-learn": "1.0.0",
+      "xgboost": "1.5.0",
+      "lightgbm": "3.3.0",
+      "catboost": "1.0.0",
+      "optuna": "3.0.0",
+      "matplotlib": "3.5.0",
+      "plotly": "5.0.0",
+      "joblib": "1.1.0",
+      "tqdm": "4.62.0",
+      "pyyaml": "6.0",
+      "requests": "2.28.0",
+      "PyGithub": "1.58.0"
+    },
+    "indirect_dependencies": {
+      "aiohappyeyeballs": "2.6.1",
+      "aiohttp": "3.12.14",
+      "aiosignal": "1.4.0",
+      "alembic": "1.16.4",
+      "AlLoRa": "2.0.0",
+      "annotated-types": "0.7.0",
+      "anyio": "4.10.0",
+      "APScheduler": "3.11.0",
+      "arch": "7.2.0",
+      "asgiref": "3.9.1",
+      "attrs": "25.3.0",
+      "bayesian-optimization": "3.1.0",
+      "beautifulsoup4": "4.13.4",
+      "blinker": "1.9.0",
+      "catboost": "1.2.8",
+      "certifi": "2025.7.14",
+      "cffi": "1.17.1",
+      "charset-normalizer": "3.4.2",
+      "click": "8.2.1",
+      "cloudpickle": "3.1.1",
+      "colorama": "0.4.6",
+      "colorlog": "6.9.0",
+      "contourpy": "1.3.3",
+      "cryptography": "45.0.5",
+      "cycler": "0.12.1",
+      "Deprecated": "1.2.18",
+      "dill": "0.4.0",
+      "fastapi": "0.116.1",
+      "feature-engine": "1.8.3",
+      "filelock": "3.18.0",
+      "Flask": "3.1.1",
+      "fonttools": "4.59.0",
+      "frozenlist": "1.7.0",
+      "fsspec": "2025.7.0",
+      "future": "1.0.0",
+      "gitdb": "4.0.12",
+      "GitPython": "3.1.45",
+      "graphviz": "0.21",
+      "gunicorn": "23.0.0",
+      "h11": "0.16.0",
+      "httpcore": "1.0.9",
+      "httptools": "0.6.4",
+      "httpx": "0.28.1",
+      "httpx-sse": "0.4.1",
+      "hyperopt": "0.2.7",
+      "idna": "3.10",
+      "imbalanced-learn": "0.14.0",
+      "itsdangerous": "2.2.0",
+      "Jinja2": "3.1.6",
+      "joblib": "1.5.1",
+      "jsonschema": "4.25.0",
+      "jsonschema-specifications": "2025.4.1",
+      "kiwisolver": "1.4.8",
+      "lightgbm": "4.6.0",
+      "llvmlite": "0.44.0",
+      "Mako": "1.3.10",
+      "MarkupSafe": "3.0.2",
+      "matplotlib": "3.10.3",
+      "mcp": "1.13.0",
+      "mpmath": "1.3.0",
+      "multidict": "6.6.3",
+      "multiprocess": "0.70.18",
+      "narwhals": "2.0.0",
+      "networkx": "3.5",
+      "nltk": "3.9.1",
+      "numba": "0.61.2",
+      "numpy": "2.2.6",
+      "optuna": "4.4.0",
+      "packaging": "25.0",
+      "pandas": "2.2.2",
+      "patsy": "1.0.1",
+      "pillow": "11.3.0",
+      "pip": "25.1.1",
+      "plotly": "6.2.0",
+      "propcache": "0.3.2",
+      "py4j": "0.10.9.9",
+      "pycparser": "2.22",
+      "pydantic": "2.11.7",
+      "pydantic_core": "2.33.2",
+      "pydantic-settings": "2.10.1",
+      "PyGithub": "2.6.1",
+      "PyJWT": "2.10.1",
+      "PyNaCl": "1.5.0",
+      "pyparsing": "3.2.3",
+      "python-dateutil": "2.9.0.post0",
+      "python-dotenv": "1.1.1",
+      "python-multipart": "0.0.20",
+      "pytz": "2025.2",
+      "PyYAML": "6.0.2",
+      "referencing": "0.36.2",
+      "regex": "2025.7.34",
+      "requests": "2.32.4",
+      "rpds-py": "0.27.0",
+      "schedule": "1.2.2",
+      "scikit-learn": "1.7.1",
+      "scipy": "1.16.0",
+      "seaborn": "0.13.2",
+      "setuptools": "80.7.1",
+      "shap": "0.48.0",
+      "six": "1.17.0",
+      "slicer": "0.0.8",
+      "smmap": "5.0.2",
+      "sniffio": "1.3.1",
+      "soupsieve": "2.7",
+      "SQLAlchemy": "2.0.42",
+      "sse-starlette": "3.0.2",
+      "starlette": "0.47.2",
+      "statsmodels": "0.14.5",
+      "sympy": "1.14.0",
+      "ta-lib": "0.6.4",
+      "threadpoolctl": "3.6.0",
+      "torch": "2.7.1",
+      "tqdm": "4.67.1",
+      "typing_extensions": "4.14.1",
+      "typing-inspection": "0.4.1",
+      "tzdata": "2025.2",
+      "tzlocal": "5.3.1",
+      "urllib3": "2.5.0",
+      "uvicorn": "0.35.0",
+      "uvloop": "0.21.0",
+      "vaderSentiment": "3.3.2",
+      "watchfiles": "1.1.0",
+      "websockets": "15.0.1",
+      "Werkzeug": "3.1.3",
+      "wrapt": "1.17.2",
+      "xgboost": "3.0.2",
+      "yarl": "1.20.1"
+    },
+    "missing_dependencies": [
+      "pyyaml"
+    ],
+    "version_conflicts": [
+      {
+        "package": "numpy",
+        "required": "1.21.0",
+        "installed": "2.2.6"
+      },
+      {
+        "package": "pandas",
+        "required": "1.3.0",
+        "installed": "2.2.2"
+      },
+      {
+        "package": "scikit-learn",
+        "required": "1.0.0",
+        "installed": "1.7.1"
+      },
+      {
+        "package": "xgboost",
+        "required": "1.5.0",
+        "installed": "3.0.2"
+      },
+      {
+        "package": "lightgbm",
+        "required": "3.3.0",
+        "installed": "4.6.0"
+      },
+      {
+        "package": "catboost",
+        "required": "1.0.0",
+        "installed": "1.2.8"
+      },
+      {
+        "package": "optuna",
+        "required": "3.0.0",
+        "installed": "4.4.0"
+      },
+      {
+        "package": "matplotlib",
+        "required": "3.5.0",
+        "installed": "3.10.3"
+      },
+      {
+        "package": "plotly",
+        "required": "5.0.0",
+        "installed": "6.2.0"
+      },
+      {
+        "package": "joblib",
+        "required": "1.1.0",
+        "installed": "1.5.1"
+      },
+      {
+        "package": "tqdm",
+        "required": "4.62.0",
+        "installed": "4.67.1"
+      },
+      {
+        "package": "requests",
+        "required": "2.28.0",
+        "installed": "2.32.4"
+      },
+      {
+        "package": "PyGithub",
+        "required": "1.58.0",
+        "installed": "2.6.1"
+      }
+    ],
+    "security_issues": [],
+    "compatibility_matrix": {
+      "numpy": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "pandas": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "scikit-learn": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "xgboost": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "lightgbm": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "catboost": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "optuna": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "matplotlib": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "plotly": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "joblib": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "tqdm": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "pyyaml": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "requests": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      },
+      "PyGithub": {
+        "python_3_8": true,
+        "python_3_9": true,
+        "python_3_10": true,
+        "python_3_11": true
+      }
+    }
+  },
+  "integration_points": [
+    {
+      "source_module": "test_toolkit",
+      "target_module": "ai_competition_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "ai_competition_toolkit"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "autonomous_example",
+      "target_module": "autonomous_example",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "autonomous_example",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "autonomous_example",
+      "target_module": "enhanced_competition_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "enhanced_competition_toolkit"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "autonomous_example",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "competition_analyzer"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "competition_analyzer",
+      "target_module": "autonomous_example",
+      "integration_type": "import",
+      "details": {
+        "dependency": "git"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "competition_analyzer",
+      "target_module": "autonomous_example",
+      "integration_type": "import",
+      "details": {
+        "dependency": "github"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "competition_analyzer",
+      "target_module": "autonomous_example",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "competition_analyzer",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "competition_analyzer",
+      "target_module": "test_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "competition_analyzer",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "competition_analyzer",
+      "target_module": "ai_competition_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "competition_analyzer",
+      "target_module": "example_usage",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "competition_analyzer",
+      "target_module": "enhanced_competition_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "competition_analyzer",
+      "target_module": "cyclical_mcp_system",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "competition_analyzer",
+      "target_module": "project_status_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "example_usage",
+      "target_module": "ai_competition_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "ai_competition_toolkit"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "enhanced_competition_toolkit",
+      "target_module": "ai_competition_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "ai_competition_toolkit"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "enhanced_competition_toolkit",
+      "target_module": "autonomous_example",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "enhanced_competition_toolkit",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "enhanced_competition_toolkit",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "competition_analyzer"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "enhanced_competition_toolkit",
+      "target_module": "cyclical_mcp_system",
+      "integration_type": "import",
+      "details": {
+        "dependency": "sys"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "enhanced_competition_toolkit",
+      "target_module": "cyclical_mcp_system",
+      "integration_type": "import",
+      "details": {
+        "dependency": "cyclical_mcp_system"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "cyclical_mcp_system",
+      "target_module": "ai_competition_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "ai_competition_toolkit"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "cyclical_mcp_system",
+      "target_module": "enhanced_competition_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "enhanced_competition_toolkit"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "cyclical_mcp_system",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "competition_analyzer"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "cyclical_mcp_system",
+      "target_module": "autonomous_example",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "cyclical_mcp_system",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "ultimate_competition_example",
+      "target_module": "autonomous_example",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "ultimate_competition_example",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "ultimate_competition_example",
+      "target_module": "enhanced_competition_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "enhanced_competition_toolkit"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "ultimate_competition_example",
+      "target_module": "cyclical_mcp_system",
+      "integration_type": "import",
+      "details": {
+        "dependency": "cyclical_mcp_system"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "project_status_analyzer",
+      "target_module": "autonomous_example",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "project_status_analyzer",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "project_status_analyzer",
+      "target_module": "cyclical_mcp_system",
+      "integration_type": "import",
+      "details": {
+        "dependency": "sys"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "project_status_analyzer",
+      "target_module": "test_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "project_status_analyzer",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "project_status_analyzer",
+      "target_module": "ai_competition_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "project_status_analyzer",
+      "target_module": "example_usage",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "project_status_analyzer",
+      "target_module": "enhanced_competition_toolkit",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "project_status_analyzer",
+      "target_module": "cyclical_mcp_system",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "project_status_analyzer",
+      "target_module": "project_status_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "re"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "cyclical_optimization_example",
+      "target_module": "autonomous_example",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "cyclical_optimization_example",
+      "target_module": "competition_analyzer",
+      "integration_type": "import",
+      "details": {
+        "dependency": "os"
+      },
+      "risk_level": "high"
+    },
+    {
+      "source_module": "cyclical_optimization_example",
+      "target_module": "cyclical_mcp_system",
+      "integration_type": "import",
+      "details": {
+        "dependency": "cyclical_mcp_system"
+      },
+      "risk_level": "high"
+    }
+  ],
+  "project_health": {
+    "health_score": 55.0,
+    "readiness_level": "not_ready",
+    "critical_issues": [
+      "Missing dependencies: ['pyyaml']",
+      "Version conflicts: 13 packages"
+    ],
+    "warnings": [
+      "High complexity files: 7",
+      "High-risk integrations: 45"
+    ],
+    "recommendations": [
+      "Consider adding clear entry points (main.py, app.py)"
+    ],
+    "mcp_readiness": false,
+    "cyclical_optimization_compatible": false
+  },
+  "readiness_assessment": {
+    "overall_readiness_score": 80.20833333333334,
+    "component_readiness": {
+      "ai_competition_toolkit": true,
+      "enhanced_competition_toolkit": true,
+      "competition_analyzer": true,
+      "cyclical_mcp_system": true
+    },
+    "dependency_status": {
+      "pandas": true,
+      "numpy": true,
+      "scikit-learn": true,
+      "xgboost": true,
+      "lightgbm": true,
+      "optuna": true,
+      "requests": true,
+      "beautifulsoup4": false
+    },
+    "mcp_prerequisites": {
+      "anthropic_support": false,
+      "openai_support": false,
+      "async_support": true,
+      "config_management": true
+    },
+    "cyclical_optimization_readiness": {
+      "core_framework": true,
+      "enhanced_framework": true,
+      "competition_analyzer": true,
+      "cyclical_system": true,
+      "dependency_satisfaction": false,
+      "integration_health": true
+    },
+    "readiness_breakdown": {
+      "components": 100.0,
+      "dependencies": 87.5,
+      "mcp_support": 50.0,
+      "cyclical_support": 83.33333333333334
+    },
+    "next_steps": [
+      "Install missing dependencies: pip install beautifulsoup4",
+      "Install AI service dependencies: pip install anthropic openai"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "competition_url": "https://forge.allora.network/competitions/16",
+  "competition": "1 day SOL/USD Log-Return Prediction",
+  "problem_type": "regression",
+  "metric": "rmse",
+  "models_used": [
+    "baseline"
+  ],
+  "ensemble_method": "stacking",
+  "optimization_applied": true,
+  "timestamp": "2025-08-18T16:58:47.121596"
+}
